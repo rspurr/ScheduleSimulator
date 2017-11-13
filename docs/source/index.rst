@@ -9,12 +9,12 @@ Welcome to ScheduleSimulator's documentation!
 .. toctree::
    :maxdepth: 2
 
-   Appointment
-   Day
-   DayDriver
-   Patient
-   DayActions
-   SchedulerActions
+   Appointment.rst
+   Day.rst
+   DayDriver.rst
+   Patient.rst
+   DayActions.rst
+   SchedulerActions.rst
 
 
 

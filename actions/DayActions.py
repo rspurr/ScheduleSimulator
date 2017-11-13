@@ -4,7 +4,9 @@ from src.Day import *
 
 
 class DayActions:
-
+    """
+        Methods that help for the Day class
+    """
     def __init__(self):
         self._log = logger
 
@@ -13,7 +15,7 @@ class DayActions:
     def check_appt(self, appt):
         """
         Checks if the appointment can be scheduled that day
-        :param: Appointment appt: appointment we want to schedule
+        :param appt: appointment we want to schedule
         :return:
         """
         appt_timeslot = self.translate_time_to_slot(appt.time)
