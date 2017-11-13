@@ -29,7 +29,6 @@ class Driver:
         self.curr_day = self.days[0]
         self._log.info("Schedule initialized!")
 
-
     def update_curr_schedule(self, new_schedule, day_num):
         """
         Updates the current_day's schedule
