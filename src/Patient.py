@@ -1,8 +1,11 @@
 
-class Patient:
+class Patient(object):
     """
-        Class to represent a Patient, which has a number, healthy boolean variable, and preferences for scheduling date
-        :param num: patient ID number
+    Class to represent a Patient, which has a number, healthy boolean variable,
+    and preferences for scheduling date
+
+    :param num: Patient ID Number
+
     """
 
     def __init__(self, num):

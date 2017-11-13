@@ -1,12 +1,16 @@
 from Appointment import Appointment
 
 
-class Day:
+class Day(object):
     """
-        Day : Has a list of times and a map of times -> appointments
-        :param num: the number of the day; for indexing purposes
+    Class to represent a Day in a Schedule
+
+    :param num: the number of the day; for indexing purposes
+
     """
+
     def __init__(self, num):
+
         self.day_num = num
         self.times = []
         self.schedule = {}

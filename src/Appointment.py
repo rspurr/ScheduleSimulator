@@ -1,16 +1,18 @@
 import datetime
 
-class Appointment:
-    """
-        Each slot in the Day's schedule
 
-        :param patient the patient who scheduled it
-        :param time the time it was scheduled for
-        :param duration the length of the visit
+class Appointment(object):
+    """
+    Each slot in the Day's schedule
+
+    :param patient: the patient who scheduled it
+    :param time: the time it was scheduled for
+    :param duration: the length of the visit
 
     """
 
     def __init__(self, patient, date, time, duration):
+
         self.patient = patient
         self.date = date
         self.time = time
