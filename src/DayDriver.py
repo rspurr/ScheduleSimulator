@@ -32,9 +32,11 @@ class Driver:
     def update_curr_schedule(self, new_schedule, day_num):
         """
         Updates the current_day's schedule
+
         :param new_schedule: the new schedule for the day
         :param day_num: the day to update the schedule on
-        :return:
+        :return: the new schedule for the day
+
         """
         self.days[day_num].schedule = new_schedule;
 
@@ -45,8 +47,10 @@ class Driver:
     def get_schedule_by_day(self, day_num):
         """
         Gets the schedule of the specified day
+
         :param day_num: the day to get the schedule for
         :return: the schedule of the day specified
+
         """
         return self.days[day_num].schedule
 

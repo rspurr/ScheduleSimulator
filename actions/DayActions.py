@@ -15,8 +15,10 @@ class DayActions:
     def check_appt(self, appt):
         """
         Checks if the appointment can be scheduled that day
+
         :param appt: appointment we want to schedule
-        :return:
+        :return: True if it can schedule, False if not
+
         """
         appt_timeslot = self.translate_time_to_slot(appt.time)
         schedule = Driver.get_schedule_by_day(appt.date)
@@ -29,8 +31,10 @@ class DayActions:
     def translate_time_to_slot(self, time):
         """
         Translates a standard time i.e. "6:15" and turns it into a timeslot we can use for indexing
-        :param String time: time we want to convert
+
+        :param time: time we want to convert
         :return: int index the index of the timeslot in the schedule
+
         """
 
         hour, minute = time.split(":")

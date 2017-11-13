@@ -2,10 +2,12 @@ import datetime
 
 class Appointment:
     """
-        Each slot in the Day's schedule;
+        Each slot in the Day's schedule
+
         :param patient the patient who scheduled it
         :param time the time it was scheduled for
         :param duration the length of the visit
+
     """
 
     def __init__(self, patient, date, time, duration):

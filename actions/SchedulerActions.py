@@ -13,9 +13,12 @@ class SchedulerActions:
     def schedule_appt(self, appt):
         """
         Schedules an appointment for the given day if it can
+
         :param appt: appointment to be scheduled
-        :return:
+        :return: nothing
+
         """
+
         schedule = Driver.get_schedule_by_day(appt.date)
         appt_timeslot = self.translate_time_to_slot(appt.time)
 
