@@ -128,9 +128,9 @@ class Driver:
         ret += "\n"
         for key,val in schedule.iteritems():
             if val is not None:
-                ret += "{}    |   {}\n".format(self.translate_slot_to_time(key), val.patient.id)
+                ret += "{}    |   {}\n".format(self.translate_slot_to_time(key), val.patient.name)
             else:
-                ret += "{}    |   {}\n".format(self.translate_slot_to_time(key), val)
+                ret += "{}    |   {}\n".format(self.translate_slot_to_time(key), "*****************")
 
         return ret
 
@@ -144,11 +144,13 @@ def create_patients(num):
 
     patients = []
 
-    for i in range(num):
-        # self._log.debug("Creating patient #{}".format(i))
-        patient = Patient(i)
-        patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15))
-        patients.append(patient)
+    with open("names", "r+") as f:
+        for i in range(num):
+            # self._log.debug("Creating patient #{}".format(i))
+            patient = Patient(i)
+            patient.name = f.readline().strip("\n")
+            patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15))
+            patients.append(patient)
 
     return patients
 
