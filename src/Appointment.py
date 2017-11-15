@@ -12,12 +12,12 @@ class Appointment(object):
 
     """
 
-    def __init__(self, patient, date, time, duration):
+    def __init__(self, patient, date, time, duration, scheduled_on):
 
         self.patient = patient
         self.date = date
         self.time = time
-        self.scheduled_time = Driver.curr_day
+        self.scheduled_date = scheduled_on
         self.days_since_request = 0
         self.duration = duration
 

@@ -2,9 +2,8 @@ import logging
 import random
 import sys
 
-from actions.SchedulerActions import *
 from Patient import Patient
-
+from Day import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -20,8 +19,6 @@ class Driver:
     """
         Initializes the schedule and begins simulation of scheduling
     """
-
-    curr_day = 0
 
     def __init__(self, length):
         self._log = logger
@@ -95,42 +92,15 @@ class Driver:
         else:
             return False
 
-    def get_appt(self, day, time):
-        return self.days[day].schedule[time];
-
-    def translate_slot_to_time(self, time):
-        """
-        Translates a standard time i.e. "6:15" and turns it into a timeslot we can use for indexing
-
-        :param time: time we want to convert
-        :return: int index the index of the timeslot in the schedule
-
-        """
-
-        mins = 0
-        hours = 0
-        for i in range(time/4):
-            for i in range(0, 4):
-                mins += 15
-                if mins >= 60:
-                    hours+=1
-                    mins = 0
-
-        mins = time*15 - (hours*4*15)
-        if mins == 0:
-            return "{}:00".format(hours)
-        else:
-            return "{}:{}".format(hours, mins)
-
     def schedule_to_string(self, schedule):
         ret = "Time:\t|\t#\n"
         ret += "-"*50
         ret += "\n"
         for key,val in schedule.iteritems():
             if val is not None:
-                ret += "{}    |   {}\n".format(self.translate_slot_to_time(key), val.patient.name)
+                ret += "{}    |   {}\n".format(translate_slot_to_time(key), val.patient.name)
             else:
-                ret += "{}    |   {}\n".format(self.translate_slot_to_time(key), "*****************")
+                ret += "{}    |   {}\n".format(translate_slot_to_time(key), "*****************")
 
         return ret
 
@@ -149,22 +119,23 @@ def create_patients(num):
             # self._log.debug("Creating patient #{}".format(i))
             patient = Patient(i)
             patient.name = f.readline().strip("\n")
-            patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15))
+            patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15, 1))
             patients.append(patient)
 
     return patients
+
 
 if __name__ == "__main__":
 
     driver = Driver(50)
     patients = create_patients(50)
-
+    curr_day = driver.days[1]
     for patient in patients:
         logger.debug("Checking schedule for today at {}".format(patient.appointments[0].time))
         if driver.check_appt(patient.appointments[0]):
             logger.debug("Scheduling for {}!".format(patient.id))
             driver.schedule_appt(patient.appointments[0])
-            driver.get_appt(patient.appointments[0].date, patient.appointments[0].time).patient = patient
+            curr_day.get_appt(patient.appointments[0].time).patient = patient
 
     logger.info(driver.schedule_to_string(driver.get_schedule_by_day(1)))
 
