@@ -1,4 +1,5 @@
 import datetime
+from DayDriver import Driver
 
 
 class Appointment(object):
@@ -16,7 +17,7 @@ class Appointment(object):
         self.patient = patient
         self.date = date
         self.time = time
-        self.scheduled_time = datetime.datetime.time()
+        self.scheduled_time = Driver.curr_day
         self.days_since_request = 0
         self.duration = duration
 

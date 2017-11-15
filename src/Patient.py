@@ -12,3 +12,4 @@ class Patient(object):
         self.id = num
         self.health = True
         self.scheduling_preferences = []
+        self.appointments = []

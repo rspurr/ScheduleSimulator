@@ -2,33 +2,19 @@
 from src.DayDriver import *
 from src.Day import *
 
+import logging
+
 
 class DayActions:
     """
         Methods that help for the Day class
     """
     def __init__(self):
-        self._log = logger
+        self._log = logging.getLogger(__name__)
 
     # helper functions
 
-    def check_appt(self, appt):
-        """
-        Checks if the appointment can be scheduled that day
-
-        :param appt: appointment we want to schedule
-        :return: True if it can schedule, False if not
-
-        """
-        appt_timeslot = self.translate_time_to_slot(appt.time)
-        schedule = Driver.get_schedule_by_day(appt.date)
-
-        if schedule[appt_timeslot] is not None:
-            return True
-        else:
-            return False
-
-    def translate_time_to_slot(self, time):
+    def translate_slot_to_time(self, time):
         """
         Translates a standard time i.e. "6:15" and turns it into a timeslot we can use for indexing
 
@@ -37,10 +23,10 @@ class DayActions:
 
         """
 
-        hour, minute = time.split(":")
-
+        hour = time % 24
+        mins = (time - (time % 24))*15
         # hour * 4 indexes into the 4 entries for that hour,
         # then minute %15 will index into the appropriate slot in that hour
-        index = hour*4 + minute%15
 
-        return index
+
+        return "{}:{}".format(hour, mins)
