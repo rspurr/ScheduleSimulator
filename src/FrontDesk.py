@@ -67,18 +67,17 @@ class Driver:
         :return: nothing
 
         """
-        self._log.info("Scheduling appt for {} on day {}".format(appt.time, appt.date))
         schedule = driver.get_schedule_by_day(appt.date)
         appt_start = appt.time
         duration = appt.duration / 15
         appt_end = appt_start + duration
-        print appt_start , appt_end
+
         if self.check_appt(appt):
+            self._log.info("Scheduling appt for day {} at time {} for {} mins".format(appt.date, appt.time, appt.duration))
             for i in range(appt_start, appt_end):
-                self._log.info("Scheduling...")
                 schedule[i] = appt
         else:
-            self._log.error("{} on day {} is filled".format(appt.time, appt.date))
+            self._log.error("Unable to schedule, t{} on day {} is filled".format(appt.time, appt.date))
 
     def check_appt(self, appt):
         """
@@ -97,7 +96,6 @@ class Driver:
         avail = True
         for i in range(appt_start, appt_end):
             if schedule[i] is not None:
-                self._log.debug("Appt unavail at time {}".format(i))
                 avail = False
 
         return avail
@@ -134,21 +132,33 @@ def create_patients(num):
 
     return patients
 
+def test_conflicts(driver, patients):
+    ''' Schedule first patient's appt '''
+    patients[0].appointments.append(Appointment(patient=patients[0], date=1, time=0, duration=30, scheduled_on=1))
+    driver.schedule_appt(patients[0].appointments[0])
+
+    ''' Schedule second patient's appt '''
+    patients[1].appointments.append(Appointment(patient=patients[1], date=1, time=1, duration=30, scheduled_on=1))
+    driver.schedule_appt(patients[1].appointments[0])
+
 
 if __name__ == "__main__":
 
     driver = Driver(50)
     patients = create_patients(50)
     curr_day = driver.days[1]
+
+    ''' Tests scheduling for multiple patients '''
     # for patient in patients:
     #     logger.debug("Checking schedule for today at {}".format(patient.appointments[0].time))
     #     if driver.check_appt(patient.appointments[0]):
     #         logger.debug("Scheduling for {}!".format(patient.id))
     #         driver.schedule_appt(patient.appointments[0])
     #         curr_day.get_appt(patient.appointments[0].time).patient = patient
-    patients[0].appointments.append(Appointment(patient=patients[0], date=1, time=0, duration=30, scheduled_on=1))
-    print patients[0].appointments[0].time
-    driver.schedule_appt(patients[0].appointments[0])
 
-    logger.info(driver.schedule_to_string(driver.get_schedule_by_day(1)))
+    ''' Tests conflicting scheduling'''
+
+    test_conflicts(driver, patients)
+
+    print driver.schedule_to_string(driver.get_schedule_by_day(1))
 
