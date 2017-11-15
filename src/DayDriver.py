@@ -7,12 +7,14 @@ from Day import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-#log_handler = logging.FileHandler("sim.log")
+
 log_stream_handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s >>> %(message)s')
 log_stream_handler.setFormatter(formatter)
-#logger.addHandler(log_handler)
 logger.addHandler(log_stream_handler)
+
+#log_handler = logging.FileHandler("sim.log")
+#logger.addHandler(log_handler)
 
 
 class Driver:
@@ -67,10 +69,14 @@ class Driver:
         """
         self._log.info("Scheduling appt for {} on day {}".format(appt.time, appt.date))
         schedule = driver.get_schedule_by_day(appt.date)
-        appt_timeslot = appt.time #translate_time_to_slot(appt.time)
-
+        appt_start = appt.time
+        duration = appt.duration / 15
+        appt_end = appt_start + duration
+        print appt_start , appt_end
         if self.check_appt(appt):
-            schedule[appt_timeslot] = appt;
+            for i in range(appt_start, appt_end):
+                self._log.info("Scheduling...")
+                schedule[i] = appt
         else:
             self._log.error("{} on day {} is filled".format(appt.time, appt.date))
 
@@ -83,17 +89,21 @@ class Driver:
 
         """
 
-        appt_timeslot = appt.time #fr_desk.translate_time_to_slot(appt.time)
+        appt_start = appt.time
+        duration = appt.duration / 15
+        appt_end = appt_start + duration
 
         schedule = self.get_schedule_by_day(appt.date)
+        avail = True
+        for i in range(appt_start, appt_end):
+            if schedule[i] is not None:
+                self._log.debug("Appt unavail at time {}".format(i))
+                avail = False
 
-        if schedule[appt.time] is None:
-            return True
-        else:
-            return False
+        return avail
 
     def schedule_to_string(self, schedule):
-        ret = "Time:\t|\t#\n"
+        ret = "\nTime:\t|\tPatient\n"
         ret += "-"*50
         ret += "\n"
         for key,val in schedule.iteritems():
@@ -119,7 +129,7 @@ def create_patients(num):
             # self._log.debug("Creating patient #{}".format(i))
             patient = Patient(i)
             patient.name = f.readline().strip("\n")
-            patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15, 1))
+            # patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15, 1))
             patients.append(patient)
 
     return patients
@@ -130,12 +140,15 @@ if __name__ == "__main__":
     driver = Driver(50)
     patients = create_patients(50)
     curr_day = driver.days[1]
-    for patient in patients:
-        logger.debug("Checking schedule for today at {}".format(patient.appointments[0].time))
-        if driver.check_appt(patient.appointments[0]):
-            logger.debug("Scheduling for {}!".format(patient.id))
-            driver.schedule_appt(patient.appointments[0])
-            curr_day.get_appt(patient.appointments[0].time).patient = patient
+    # for patient in patients:
+    #     logger.debug("Checking schedule for today at {}".format(patient.appointments[0].time))
+    #     if driver.check_appt(patient.appointments[0]):
+    #         logger.debug("Scheduling for {}!".format(patient.id))
+    #         driver.schedule_appt(patient.appointments[0])
+    #         curr_day.get_appt(patient.appointments[0].time).patient = patient
+    patients[0].appointments.append(Appointment(patient=patients[0], date=1, time=0, duration=30, scheduled_on=1))
+    print patients[0].appointments[0].time
+    driver.schedule_appt(patients[0].appointments[0])
 
     logger.info(driver.schedule_to_string(driver.get_schedule_by_day(1)))
 
