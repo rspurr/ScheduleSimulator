@@ -8,11 +8,11 @@ from Patient import Patient
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-log_handler = logging.FileHandler("sim.log")
+#log_handler = logging.FileHandler("sim.log")
 log_stream_handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s >>> %(message)s')
-log_handler.setFormatter(formatter)
-logger.addHandler(log_handler)
+log_stream_handler.setFormatter(formatter)
+#logger.addHandler(log_handler)
 logger.addHandler(log_stream_handler)
 
 

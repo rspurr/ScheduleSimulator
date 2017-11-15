@@ -4995,3 +4995,1186 @@
 23:30    |   None
 23:45    |   None
 
+2017-11-14 22:20:10,523 - __main__ - INFO >>> Schedule initialized!
+2017-11-14 22:20:23,697 - __main__ - INFO >>> Schedule initialized!
+2017-11-14 22:20:23,698 - __main__ - DEBUG >>> Checking schedule for today at 71
+2017-11-14 22:20:23,698 - __main__ - DEBUG >>> Scheduling for 0!
+2017-11-14 22:20:23,698 - __main__ - INFO >>> Scheduling appt for 71 on day 1
+2017-11-14 22:20:23,698 - __main__ - DEBUG >>> Checking schedule for today at 1
+2017-11-14 22:20:23,698 - __main__ - DEBUG >>> Scheduling for 1!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 1 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 64
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 2!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 64 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 63
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 3!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 63 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 39
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 4!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 39 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 43
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 5!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 43 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 73
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 6!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 73 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 7!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 93 on day 1
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Checking schedule for today at 4
+2017-11-14 22:20:23,700 - __main__ - DEBUG >>> Scheduling for 8!
+2017-11-14 22:20:23,700 - __main__ - INFO >>> Scheduling appt for 4 on day 1
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Checking schedule for today at 14
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Scheduling for 9!
+2017-11-14 22:20:23,701 - __main__ - INFO >>> Scheduling appt for 14 on day 1
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Checking schedule for today at 81
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Scheduling for 10!
+2017-11-14 22:20:23,701 - __main__ - INFO >>> Scheduling appt for 81 on day 1
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Checking schedule for today at 44
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Scheduling for 11!
+2017-11-14 22:20:23,701 - __main__ - INFO >>> Scheduling appt for 44 on day 1
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Checking schedule for today at 91
+2017-11-14 22:20:23,701 - __main__ - DEBUG >>> Scheduling for 12!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 91 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 63
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 28
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Scheduling for 14!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 28 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 13
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Scheduling for 15!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 13 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 20
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Scheduling for 16!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 20 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 47
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Scheduling for 17!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 47 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 57
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Scheduling for 18!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 57 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 95
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Scheduling for 19!
+2017-11-14 22:20:23,703 - __main__ - INFO >>> Scheduling appt for 95 on day 1
+2017-11-14 22:20:23,703 - __main__ - DEBUG >>> Checking schedule for today at 1
+2017-11-14 22:20:23,704 - __main__ - DEBUG >>> Checking schedule for today at 91
+2017-11-14 22:20:23,704 - __main__ - DEBUG >>> Checking schedule for today at 37
+2017-11-14 22:20:23,704 - __main__ - DEBUG >>> Scheduling for 22!
+2017-11-14 22:20:23,704 - __main__ - INFO >>> Scheduling appt for 37 on day 1
+2017-11-14 22:20:23,704 - __main__ - DEBUG >>> Checking schedule for today at 78
+2017-11-14 22:20:23,704 - __main__ - DEBUG >>> Scheduling for 23!
+2017-11-14 22:20:23,704 - __main__ - INFO >>> Scheduling appt for 78 on day 1
+2017-11-14 22:20:23,704 - __main__ - DEBUG >>> Checking schedule for today at 92
+2017-11-14 22:20:23,706 - __main__ - DEBUG >>> Scheduling for 24!
+2017-11-14 22:20:23,706 - __main__ - INFO >>> Scheduling appt for 92 on day 1
+2017-11-14 22:20:23,706 - __main__ - DEBUG >>> Checking schedule for today at 59
+2017-11-14 22:20:23,706 - __main__ - DEBUG >>> Scheduling for 25!
+2017-11-14 22:20:23,706 - __main__ - INFO >>> Scheduling appt for 59 on day 1
+2017-11-14 22:20:23,706 - __main__ - DEBUG >>> Checking schedule for today at 7
+2017-11-14 22:20:23,706 - __main__ - DEBUG >>> Scheduling for 26!
+2017-11-14 22:20:23,706 - __main__ - INFO >>> Scheduling appt for 7 on day 1
+2017-11-14 22:20:23,706 - __main__ - DEBUG >>> Checking schedule for today at 6
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Scheduling for 27!
+2017-11-14 22:20:23,707 - __main__ - INFO >>> Scheduling appt for 6 on day 1
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 3
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Scheduling for 28!
+2017-11-14 22:20:23,707 - __main__ - INFO >>> Scheduling appt for 3 on day 1
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 31
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Scheduling for 29!
+2017-11-14 22:20:23,707 - __main__ - INFO >>> Scheduling appt for 31 on day 1
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 51
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Scheduling for 30!
+2017-11-14 22:20:23,707 - __main__ - INFO >>> Scheduling appt for 51 on day 1
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 26
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Scheduling for 31!
+2017-11-14 22:20:23,707 - __main__ - INFO >>> Scheduling appt for 26 on day 1
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 81
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 71
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 39
+2017-11-14 22:20:23,707 - __main__ - DEBUG >>> Checking schedule for today at 28
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Checking schedule for today at 56
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Scheduling for 36!
+2017-11-14 22:20:23,709 - __main__ - INFO >>> Scheduling appt for 56 on day 1
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Checking schedule for today at 43
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Checking schedule for today at 24
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Scheduling for 38!
+2017-11-14 22:20:23,709 - __main__ - INFO >>> Scheduling appt for 24 on day 1
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Checking schedule for today at 91
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Checking schedule for today at 54
+2017-11-14 22:20:23,709 - __main__ - DEBUG >>> Scheduling for 40!
+2017-11-14 22:20:23,710 - __main__ - INFO >>> Scheduling appt for 54 on day 1
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 18
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Scheduling for 41!
+2017-11-14 22:20:23,710 - __main__ - INFO >>> Scheduling appt for 18 on day 1
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 30
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Scheduling for 42!
+2017-11-14 22:20:23,710 - __main__ - INFO >>> Scheduling appt for 30 on day 1
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 21
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Scheduling for 43!
+2017-11-14 22:20:23,710 - __main__ - INFO >>> Scheduling appt for 21 on day 1
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 47
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 18
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 3
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Checking schedule for today at 38
+2017-11-14 22:20:23,710 - __main__ - DEBUG >>> Scheduling for 48!
+2017-11-14 22:20:23,710 - __main__ - INFO >>> Scheduling appt for 38 on day 1
+2017-11-14 22:20:23,711 - __main__ - DEBUG >>> Checking schedule for today at 70
+2017-11-14 22:20:23,711 - __main__ - DEBUG >>> Scheduling for 49!
+2017-11-14 22:20:23,711 - __main__ - INFO >>> Scheduling appt for 70 on day 1
+2017-11-14 22:20:23,713 - __main__ - INFO >>> Time:	|	#
+--------------------------------------------------
+0:00    |   None
+0:15    |   1
+0:30    |   None
+0:45    |   28
+1:00    |   8
+1:15    |   None
+1:30    |   27
+1:45    |   26
+2:00    |   None
+2:15    |   None
+2:30    |   None
+2:45    |   None
+3:00    |   None
+3:15    |   15
+3:30    |   9
+3:45    |   None
+4:00    |   None
+4:15    |   None
+4:30    |   41
+4:45    |   None
+5:00    |   16
+5:15    |   43
+5:30    |   None
+5:45    |   None
+6:00    |   38
+6:15    |   None
+6:30    |   31
+6:45    |   None
+7:00    |   14
+7:15    |   None
+7:30    |   42
+7:45    |   29
+8:00    |   None
+8:15    |   None
+8:30    |   None
+8:45    |   None
+9:00    |   None
+9:15    |   22
+9:30    |   48
+9:45    |   4
+10:00    |   None
+10:15    |   None
+10:30    |   None
+10:45    |   5
+11:00    |   11
+11:15    |   None
+11:30    |   None
+11:45    |   17
+12:00    |   None
+12:15    |   None
+12:30    |   None
+12:45    |   30
+13:00    |   None
+13:15    |   None
+13:30    |   40
+13:45    |   None
+14:00    |   36
+14:15    |   18
+14:30    |   None
+14:45    |   25
+15:00    |   None
+15:15    |   None
+15:30    |   None
+15:45    |   3
+16:00    |   2
+16:15    |   None
+16:30    |   None
+16:45    |   None
+17:00    |   None
+17:15    |   None
+17:30    |   49
+17:45    |   0
+18:00    |   None
+18:15    |   6
+18:30    |   None
+18:45    |   None
+19:00    |   None
+19:15    |   None
+19:30    |   23
+19:45    |   None
+20:00    |   None
+20:15    |   10
+20:30    |   None
+20:45    |   None
+21:00    |   None
+21:15    |   None
+21:30    |   None
+21:45    |   None
+22:00    |   None
+22:15    |   None
+22:30    |   None
+22:45    |   12
+23:00    |   24
+23:15    |   7
+23:30    |   None
+23:45    |   19
+
+2017-11-14 22:20:46,763 - __main__ - INFO >>> Schedule initialized!
+2017-11-14 22:20:46,763 - __main__ - DEBUG >>> Checking schedule for today at 67
+2017-11-14 22:20:46,763 - __main__ - DEBUG >>> Scheduling for 0!
+2017-11-14 22:20:46,763 - __main__ - INFO >>> Scheduling appt for 67 on day 1
+2017-11-14 22:20:46,763 - __main__ - DEBUG >>> Checking schedule for today at 22
+2017-11-14 22:20:46,763 - __main__ - DEBUG >>> Scheduling for 1!
+2017-11-14 22:20:46,763 - __main__ - INFO >>> Scheduling appt for 22 on day 1
+2017-11-14 22:20:46,763 - __main__ - DEBUG >>> Checking schedule for today at 6
+2017-11-14 22:20:46,763 - __main__ - DEBUG >>> Scheduling for 2!
+2017-11-14 22:20:46,765 - __main__ - INFO >>> Scheduling appt for 6 on day 1
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Checking schedule for today at 73
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Scheduling for 3!
+2017-11-14 22:20:46,765 - __main__ - INFO >>> Scheduling appt for 73 on day 1
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Checking schedule for today at 88
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Scheduling for 4!
+2017-11-14 22:20:46,765 - __main__ - INFO >>> Scheduling appt for 88 on day 1
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Checking schedule for today at 3
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Scheduling for 5!
+2017-11-14 22:20:46,765 - __main__ - INFO >>> Scheduling appt for 3 on day 1
+2017-11-14 22:20:46,765 - __main__ - DEBUG >>> Checking schedule for today at 63
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Scheduling for 6!
+2017-11-14 22:20:46,766 - __main__ - INFO >>> Scheduling appt for 63 on day 1
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 92
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Scheduling for 7!
+2017-11-14 22:20:46,766 - __main__ - INFO >>> Scheduling appt for 92 on day 1
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 12
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Scheduling for 8!
+2017-11-14 22:20:46,766 - __main__ - INFO >>> Scheduling appt for 12 on day 1
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 77
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Scheduling for 9!
+2017-11-14 22:20:46,766 - __main__ - INFO >>> Scheduling appt for 77 on day 1
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 69
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Scheduling for 10!
+2017-11-14 22:20:46,766 - __main__ - INFO >>> Scheduling appt for 69 on day 1
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 54
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Scheduling for 11!
+2017-11-14 22:20:46,766 - __main__ - INFO >>> Scheduling appt for 54 on day 1
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 6
+2017-11-14 22:20:46,766 - __main__ - DEBUG >>> Checking schedule for today at 43
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Scheduling for 13!
+2017-11-14 22:20:46,767 - __main__ - INFO >>> Scheduling appt for 43 on day 1
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Checking schedule for today at 57
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Scheduling for 14!
+2017-11-14 22:20:46,767 - __main__ - INFO >>> Scheduling appt for 57 on day 1
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Checking schedule for today at 40
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Scheduling for 15!
+2017-11-14 22:20:46,767 - __main__ - INFO >>> Scheduling appt for 40 on day 1
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Checking schedule for today at 62
+2017-11-14 22:20:46,767 - __main__ - DEBUG >>> Scheduling for 16!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 62 on day 1
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 82
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Scheduling for 17!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 82 on day 1
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 92
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 47
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Scheduling for 19!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 47 on day 1
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 14
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Scheduling for 20!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 14 on day 1
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 94
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Scheduling for 21!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 94 on day 1
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 41
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Scheduling for 22!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 41 on day 1
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Checking schedule for today at 64
+2017-11-14 22:20:46,769 - __main__ - DEBUG >>> Scheduling for 23!
+2017-11-14 22:20:46,769 - __main__ - INFO >>> Scheduling appt for 64 on day 1
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Checking schedule for today at 28
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Scheduling for 24!
+2017-11-14 22:20:46,770 - __main__ - INFO >>> Scheduling appt for 28 on day 1
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Checking schedule for today at 48
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Scheduling for 25!
+2017-11-14 22:20:46,770 - __main__ - INFO >>> Scheduling appt for 48 on day 1
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Checking schedule for today at 79
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Scheduling for 26!
+2017-11-14 22:20:46,770 - __main__ - INFO >>> Scheduling appt for 79 on day 1
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Checking schedule for today at 31
+2017-11-14 22:20:46,770 - __main__ - DEBUG >>> Scheduling for 27!
+2017-11-14 22:20:46,772 - __main__ - INFO >>> Scheduling appt for 31 on day 1
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Scheduling for 28!
+2017-11-14 22:20:46,772 - __main__ - INFO >>> Scheduling appt for 93 on day 1
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Checking schedule for today at 63
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Checking schedule for today at 39
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Scheduling for 30!
+2017-11-14 22:20:46,772 - __main__ - INFO >>> Scheduling appt for 39 on day 1
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Checking schedule for today at 12
+2017-11-14 22:20:46,772 - __main__ - DEBUG >>> Checking schedule for today at 73
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 29
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Scheduling for 33!
+2017-11-14 22:20:46,773 - __main__ - INFO >>> Scheduling appt for 29 on day 1
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 79
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 75
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Scheduling for 35!
+2017-11-14 22:20:46,773 - __main__ - INFO >>> Scheduling appt for 75 on day 1
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 5
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Scheduling for 36!
+2017-11-14 22:20:46,773 - __main__ - INFO >>> Scheduling appt for 5 on day 1
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 3
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 22
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 87
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Scheduling for 39!
+2017-11-14 22:20:46,773 - __main__ - INFO >>> Scheduling appt for 87 on day 1
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 35
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Scheduling for 40!
+2017-11-14 22:20:46,773 - __main__ - INFO >>> Scheduling appt for 35 on day 1
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Checking schedule for today at 21
+2017-11-14 22:20:46,773 - __main__ - DEBUG >>> Scheduling for 41!
+2017-11-14 22:20:46,773 - __main__ - INFO >>> Scheduling appt for 21 on day 1
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 47
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 74
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Scheduling for 43!
+2017-11-14 22:20:46,775 - __main__ - INFO >>> Scheduling appt for 74 on day 1
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 6
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 12
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 36
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Scheduling for 46!
+2017-11-14 22:20:46,775 - __main__ - INFO >>> Scheduling appt for 36 on day 1
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 77
+2017-11-14 22:20:46,775 - __main__ - DEBUG >>> Checking schedule for today at 55
+2017-11-14 22:20:46,776 - __main__ - DEBUG >>> Scheduling for 48!
+2017-11-14 22:20:46,776 - __main__ - INFO >>> Scheduling appt for 55 on day 1
+2017-11-14 22:20:46,776 - __main__ - DEBUG >>> Checking schedule for today at 86
+2017-11-14 22:20:46,776 - __main__ - DEBUG >>> Scheduling for 49!
+2017-11-14 22:20:46,776 - __main__ - INFO >>> Scheduling appt for 86 on day 1
+2017-11-14 22:20:46,776 - __main__ - INFO >>> Time:	|	#
+--------------------------------------------------
+0:00    |    OPEN 
+0:15    |    OPEN 
+0:30    |    OPEN 
+0:45    |   Barry Harris
+
+1:00    |    OPEN 
+1:15    |   Melvin Kloeck
+
+1:30    |   Linda Suh
+
+1:45    |    OPEN 
+2:00    |    OPEN 
+2:15    |    OPEN 
+2:30    |    OPEN 
+2:45    |    OPEN 
+3:00    |   James Hoggard
+
+3:15    |    OPEN 
+3:30    |   Carrie Oliver
+
+3:45    |    OPEN 
+4:00    |    OPEN 
+4:15    |    OPEN 
+4:30    |    OPEN 
+4:45    |    OPEN 
+5:00    |    OPEN 
+5:15    |   Mattie Royster
+
+5:30    |   Bobbie Mccoy
+
+5:45    |    OPEN 
+6:00    |    OPEN 
+6:15    |    OPEN 
+6:30    |    OPEN 
+6:45    |    OPEN 
+7:00    |   Domenica Martin
+
+7:15    |   Dana Muzquiz
+
+7:30    |    OPEN 
+7:45    |   Marlene Nabb
+
+8:00    |    OPEN 
+8:15    |    OPEN 
+8:30    |    OPEN 
+8:45    |   Melanie Young
+
+9:00    |   Jennifer Bell
+
+9:15    |    OPEN 
+9:30    |    OPEN 
+9:45    |   Remona Mullen
+
+10:00    |   Kurt Harris
+
+10:15    |   Nicole Tran
+
+10:30    |    OPEN 
+10:45    |   Violet Pedraza
+
+11:00    |    OPEN 
+11:15    |    OPEN 
+11:30    |    OPEN 
+11:45    |   Agustina Lefevre
+
+12:00    |   Eric Roberts
+
+12:15    |    OPEN 
+12:30    |    OPEN 
+12:45    |    OPEN 
+13:00    |    OPEN 
+13:15    |    OPEN 
+13:30    |   Alexa Glory
+
+13:45    |   William Bedwell
+
+14:00    |    OPEN 
+14:15    |   Adriane Dixon
+
+14:30    |    OPEN 
+14:45    |    OPEN 
+15:00    |    OPEN 
+15:15    |    OPEN 
+15:30    |   Christy Labine
+
+15:45    |   Donald Hux
+
+16:00    |   Jessica Ervin
+
+16:15    |    OPEN 
+16:30    |    OPEN 
+16:45    |   William Burkle
+
+17:00    |    OPEN 
+17:15    |   Jimmie Allen
+
+17:30    |    OPEN 
+17:45    |    OPEN 
+18:00    |    OPEN 
+18:15    |   Craig Albrecht
+
+18:30    |   Viola Tart
+
+18:45    |   Brendan Cluck
+
+19:00    |    OPEN 
+19:15    |   Louis Woods
+
+19:30    |    OPEN 
+19:45    |   Kevin Carter
+
+20:00    |    OPEN 
+20:15    |    OPEN 
+20:30    |   Joshua Smith
+
+20:45    |    OPEN 
+21:00    |    OPEN 
+21:15    |    OPEN 
+21:30    |   Christina Bullock
+
+21:45    |   William Stoudenmire
+
+22:00    |   Claude Nichols
+
+22:15    |    OPEN 
+22:30    |    OPEN 
+22:45    |    OPEN 
+23:00    |   Mark Alfonso
+
+23:15    |   John Huey
+
+23:30    |   David Suda
+
+23:45    |    OPEN 
+
+2017-11-14 22:21:06,299 - __main__ - INFO >>> Schedule initialized!
+2017-11-14 22:21:06,301 - __main__ - DEBUG >>> Checking schedule for today at 90
+2017-11-14 22:21:06,301 - __main__ - DEBUG >>> Scheduling for 0!
+2017-11-14 22:21:06,301 - __main__ - INFO >>> Scheduling appt for 90 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 10
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 1!
+2017-11-14 22:21:06,302 - __main__ - INFO >>> Scheduling appt for 10 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 56
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 2!
+2017-11-14 22:21:06,302 - __main__ - INFO >>> Scheduling appt for 56 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 56
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 30
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 4!
+2017-11-14 22:21:06,302 - __main__ - INFO >>> Scheduling appt for 30 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 9
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 5!
+2017-11-14 22:21:06,302 - __main__ - INFO >>> Scheduling appt for 9 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 16
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 6!
+2017-11-14 22:21:06,302 - __main__ - INFO >>> Scheduling appt for 16 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 34
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 7!
+2017-11-14 22:21:06,302 - __main__ - INFO >>> Scheduling appt for 34 on day 1
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Checking schedule for today at 25
+2017-11-14 22:21:06,302 - __main__ - DEBUG >>> Scheduling for 8!
+2017-11-14 22:21:06,303 - __main__ - INFO >>> Scheduling appt for 25 on day 1
+2017-11-14 22:21:06,303 - __main__ - DEBUG >>> Checking schedule for today at 68
+2017-11-14 22:21:06,303 - __main__ - DEBUG >>> Scheduling for 9!
+2017-11-14 22:21:06,303 - __main__ - INFO >>> Scheduling appt for 68 on day 1
+2017-11-14 22:21:06,303 - __main__ - DEBUG >>> Checking schedule for today at 37
+2017-11-14 22:21:06,303 - __main__ - DEBUG >>> Scheduling for 10!
+2017-11-14 22:21:06,303 - __main__ - INFO >>> Scheduling appt for 37 on day 1
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Checking schedule for today at 84
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Scheduling for 11!
+2017-11-14 22:21:06,305 - __main__ - INFO >>> Scheduling appt for 84 on day 1
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Scheduling for 12!
+2017-11-14 22:21:06,305 - __main__ - INFO >>> Scheduling appt for 93 on day 1
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Checking schedule for today at 60
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Scheduling for 13!
+2017-11-14 22:21:06,305 - __main__ - INFO >>> Scheduling appt for 60 on day 1
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Checking schedule for today at 24
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Scheduling for 14!
+2017-11-14 22:21:06,305 - __main__ - INFO >>> Scheduling appt for 24 on day 1
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Checking schedule for today at 62
+2017-11-14 22:21:06,305 - __main__ - DEBUG >>> Scheduling for 15!
+2017-11-14 22:21:06,305 - __main__ - INFO >>> Scheduling appt for 62 on day 1
+2017-11-14 22:21:06,306 - __main__ - DEBUG >>> Checking schedule for today at 45
+2017-11-14 22:21:06,306 - __main__ - DEBUG >>> Scheduling for 16!
+2017-11-14 22:21:06,306 - __main__ - INFO >>> Scheduling appt for 45 on day 1
+2017-11-14 22:21:06,306 - __main__ - DEBUG >>> Checking schedule for today at 6
+2017-11-14 22:21:06,306 - __main__ - DEBUG >>> Scheduling for 17!
+2017-11-14 22:21:06,306 - __main__ - INFO >>> Scheduling appt for 6 on day 1
+2017-11-14 22:21:06,306 - __main__ - DEBUG >>> Checking schedule for today at 89
+2017-11-14 22:21:06,306 - __main__ - DEBUG >>> Scheduling for 18!
+2017-11-14 22:21:06,306 - __main__ - INFO >>> Scheduling appt for 89 on day 1
+2017-11-14 22:21:06,308 - __main__ - DEBUG >>> Checking schedule for today at 8
+2017-11-14 22:21:06,308 - __main__ - DEBUG >>> Scheduling for 19!
+2017-11-14 22:21:06,308 - __main__ - INFO >>> Scheduling appt for 8 on day 1
+2017-11-14 22:21:06,308 - __main__ - DEBUG >>> Checking schedule for today at 58
+2017-11-14 22:21:06,308 - __main__ - DEBUG >>> Scheduling for 20!
+2017-11-14 22:21:06,308 - __main__ - INFO >>> Scheduling appt for 58 on day 1
+2017-11-14 22:21:06,308 - __main__ - DEBUG >>> Checking schedule for today at 76
+2017-11-14 22:21:06,308 - __main__ - DEBUG >>> Scheduling for 21!
+2017-11-14 22:21:06,309 - __main__ - INFO >>> Scheduling appt for 76 on day 1
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 86
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Scheduling for 22!
+2017-11-14 22:21:06,309 - __main__ - INFO >>> Scheduling appt for 86 on day 1
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 68
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 60
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 22
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Scheduling for 25!
+2017-11-14 22:21:06,309 - __main__ - INFO >>> Scheduling appt for 22 on day 1
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 69
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Scheduling for 26!
+2017-11-14 22:21:06,309 - __main__ - INFO >>> Scheduling appt for 69 on day 1
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 71
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Scheduling for 27!
+2017-11-14 22:21:06,309 - __main__ - INFO >>> Scheduling appt for 71 on day 1
+2017-11-14 22:21:06,309 - __main__ - DEBUG >>> Checking schedule for today at 72
+2017-11-14 22:21:06,311 - __main__ - DEBUG >>> Scheduling for 28!
+2017-11-14 22:21:06,311 - __main__ - INFO >>> Scheduling appt for 72 on day 1
+2017-11-14 22:21:06,311 - __main__ - DEBUG >>> Checking schedule for today at 16
+2017-11-14 22:21:06,311 - __main__ - DEBUG >>> Checking schedule for today at 66
+2017-11-14 22:21:06,311 - __main__ - DEBUG >>> Scheduling for 30!
+2017-11-14 22:21:06,311 - __main__ - INFO >>> Scheduling appt for 66 on day 1
+2017-11-14 22:21:06,311 - __main__ - DEBUG >>> Checking schedule for today at 0
+2017-11-14 22:21:06,311 - __main__ - DEBUG >>> Scheduling for 31!
+2017-11-14 22:21:06,312 - __main__ - INFO >>> Scheduling appt for 0 on day 1
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 87
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Scheduling for 32!
+2017-11-14 22:21:06,312 - __main__ - INFO >>> Scheduling appt for 87 on day 1
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 75
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Scheduling for 33!
+2017-11-14 22:21:06,312 - __main__ - INFO >>> Scheduling appt for 75 on day 1
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 29
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Scheduling for 34!
+2017-11-14 22:21:06,312 - __main__ - INFO >>> Scheduling appt for 29 on day 1
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 75
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 24
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 77
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Scheduling for 37!
+2017-11-14 22:21:06,312 - __main__ - INFO >>> Scheduling appt for 77 on day 1
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Checking schedule for today at 4
+2017-11-14 22:21:06,312 - __main__ - DEBUG >>> Scheduling for 38!
+2017-11-14 22:21:06,312 - __main__ - INFO >>> Scheduling appt for 4 on day 1
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Checking schedule for today at 36
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Scheduling for 39!
+2017-11-14 22:21:06,313 - __main__ - INFO >>> Scheduling appt for 36 on day 1
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Checking schedule for today at 19
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Scheduling for 40!
+2017-11-14 22:21:06,313 - __main__ - INFO >>> Scheduling appt for 19 on day 1
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Checking schedule for today at 35
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Scheduling for 41!
+2017-11-14 22:21:06,313 - __main__ - INFO >>> Scheduling appt for 35 on day 1
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Checking schedule for today at 77
+2017-11-14 22:21:06,313 - __main__ - DEBUG >>> Checking schedule for today at 92
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Scheduling for 43!
+2017-11-14 22:21:06,315 - __main__ - INFO >>> Scheduling appt for 92 on day 1
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Checking schedule for today at 11
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Scheduling for 44!
+2017-11-14 22:21:06,315 - __main__ - INFO >>> Scheduling appt for 11 on day 1
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Checking schedule for today at 65
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Scheduling for 45!
+2017-11-14 22:21:06,315 - __main__ - INFO >>> Scheduling appt for 65 on day 1
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Checking schedule for today at 55
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Scheduling for 46!
+2017-11-14 22:21:06,315 - __main__ - INFO >>> Scheduling appt for 55 on day 1
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Checking schedule for today at 29
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Checking schedule for today at 91
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Scheduling for 48!
+2017-11-14 22:21:06,315 - __main__ - INFO >>> Scheduling appt for 91 on day 1
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Checking schedule for today at 79
+2017-11-14 22:21:06,315 - __main__ - DEBUG >>> Scheduling for 49!
+2017-11-14 22:21:06,315 - __main__ - INFO >>> Scheduling appt for 79 on day 1
+2017-11-14 22:21:06,316 - __main__ - INFO >>> Time:	|	#
+--------------------------------------------------
+0:00    |   Ted Dietz
+0:15    |    OPEN 
+0:30    |    OPEN 
+0:45    |    OPEN 
+1:00    |   Violet Holcomb
+1:15    |    OPEN 
+1:30    |   Joshua Smith
+1:45    |    OPEN 
+2:00    |   Agustina Lefevre
+2:15    |   Barry Harris
+2:30    |   Bobbie Mccoy
+2:45    |   Joanne Beckner
+3:00    |    OPEN 
+3:15    |    OPEN 
+3:30    |    OPEN 
+3:45    |    OPEN 
+4:00    |   Donald Hux
+4:15    |    OPEN 
+4:30    |    OPEN 
+4:45    |   Melanie Young
+5:00    |    OPEN 
+5:15    |    OPEN 
+5:30    |   Eric Roberts
+5:45    |    OPEN 
+6:00    |   Adriane Dixon
+6:15    |   James Hoggard
+6:30    |    OPEN 
+6:45    |    OPEN 
+7:00    |    OPEN 
+7:15    |   Louis Smith
+7:30    |   Claude Nichols
+7:45    |    OPEN 
+8:00    |    OPEN 
+8:15    |    OPEN 
+8:30    |   Mark Alfonso
+8:45    |   Mattie Royster
+9:00    |   William Stoudenmire
+9:15    |   Jimmie Allen
+9:30    |    OPEN 
+9:45    |    OPEN 
+10:00    |    OPEN 
+10:15    |    OPEN 
+10:30    |    OPEN 
+10:45    |    OPEN 
+11:00    |    OPEN 
+11:15    |   Christy Labine
+11:30    |    OPEN 
+11:45    |    OPEN 
+12:00    |    OPEN 
+12:15    |    OPEN 
+12:30    |    OPEN 
+12:45    |    OPEN 
+13:00    |    OPEN 
+13:15    |    OPEN 
+13:30    |    OPEN 
+13:45    |   Jennifer Bell
+14:00    |   Linda Suh
+14:15    |    OPEN 
+14:30    |   Carrie Oliver
+14:45    |    OPEN 
+15:00    |   Violet Pedraza
+15:15    |    OPEN 
+15:30    |   Kurt Harris
+15:45    |    OPEN 
+16:00    |    OPEN 
+16:15    |   Mary Degroot
+16:30    |   Remona Mullen
+16:45    |    OPEN 
+17:00    |   Louis Woods
+17:15    |   Kevin Carter
+17:30    |    OPEN 
+17:45    |   Marlene Nabb
+18:00    |   John Huey
+18:15    |    OPEN 
+18:30    |    OPEN 
+18:45    |   Dana Muzquiz
+19:00    |   David Suda
+19:15    |   Sheryl Swanson
+19:30    |    OPEN 
+19:45    |   Christina Bullock
+20:00    |    OPEN 
+20:15    |    OPEN 
+20:30    |    OPEN 
+20:45    |    OPEN 
+21:00    |   Alexa Glory
+21:15    |    OPEN 
+21:30    |   Nicole Tran
+21:45    |   Thomas King
+22:00    |    OPEN 
+22:15    |   Terry Higdon
+22:30    |   William Burkle
+22:45    |   William Bedwell
+23:00    |   Viola Tart
+23:15    |   Paul Ellis
+23:30    |    OPEN 
+23:45    |    OPEN 
+
+2017-11-14 22:21:28,230 - __main__ - INFO >>> Schedule initialized!
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Checking schedule for today at 19
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Scheduling for 0!
+2017-11-14 22:21:28,230 - __main__ - INFO >>> Scheduling appt for 19 on day 1
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Checking schedule for today at 84
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Scheduling for 1!
+2017-11-14 22:21:28,230 - __main__ - INFO >>> Scheduling appt for 84 on day 1
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Checking schedule for today at 74
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Scheduling for 2!
+2017-11-14 22:21:28,230 - __main__ - INFO >>> Scheduling appt for 74 on day 1
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Checking schedule for today at 46
+2017-11-14 22:21:28,230 - __main__ - DEBUG >>> Scheduling for 3!
+2017-11-14 22:21:28,232 - __main__ - INFO >>> Scheduling appt for 46 on day 1
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Checking schedule for today at 37
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Scheduling for 4!
+2017-11-14 22:21:28,232 - __main__ - INFO >>> Scheduling appt for 37 on day 1
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Checking schedule for today at 84
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Checking schedule for today at 94
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Scheduling for 6!
+2017-11-14 22:21:28,232 - __main__ - INFO >>> Scheduling appt for 94 on day 1
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:21:28,232 - __main__ - DEBUG >>> Scheduling for 7!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 93 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 56
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Scheduling for 8!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 56 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 70
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Scheduling for 9!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 70 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 28
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Scheduling for 10!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 28 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 13
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Scheduling for 11!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 13 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 69
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Scheduling for 12!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 69 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 14
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Scheduling for 13!
+2017-11-14 22:21:28,233 - __main__ - INFO >>> Scheduling appt for 14 on day 1
+2017-11-14 22:21:28,233 - __main__ - DEBUG >>> Checking schedule for today at 94
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Checking schedule for today at 48
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Scheduling for 16!
+2017-11-14 22:21:28,234 - __main__ - INFO >>> Scheduling appt for 48 on day 1
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Checking schedule for today at 66
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Scheduling for 17!
+2017-11-14 22:21:28,234 - __main__ - INFO >>> Scheduling appt for 66 on day 1
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Checking schedule for today at 72
+2017-11-14 22:21:28,234 - __main__ - DEBUG >>> Scheduling for 18!
+2017-11-14 22:21:28,234 - __main__ - INFO >>> Scheduling appt for 72 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 63
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Scheduling for 19!
+2017-11-14 22:21:28,236 - __main__ - INFO >>> Scheduling appt for 63 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 79
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Scheduling for 20!
+2017-11-14 22:21:28,236 - __main__ - INFO >>> Scheduling appt for 79 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 10
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Scheduling for 21!
+2017-11-14 22:21:28,236 - __main__ - INFO >>> Scheduling appt for 10 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 12
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Scheduling for 22!
+2017-11-14 22:21:28,236 - __main__ - INFO >>> Scheduling appt for 12 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 16
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Scheduling for 23!
+2017-11-14 22:21:28,236 - __main__ - INFO >>> Scheduling appt for 16 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 72
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 17
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Scheduling for 25!
+2017-11-14 22:21:28,236 - __main__ - INFO >>> Scheduling appt for 17 on day 1
+2017-11-14 22:21:28,236 - __main__ - DEBUG >>> Checking schedule for today at 95
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Scheduling for 26!
+2017-11-14 22:21:28,237 - __main__ - INFO >>> Scheduling appt for 95 on day 1
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Checking schedule for today at 61
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Scheduling for 27!
+2017-11-14 22:21:28,237 - __main__ - INFO >>> Scheduling appt for 61 on day 1
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Checking schedule for today at 51
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Scheduling for 28!
+2017-11-14 22:21:28,237 - __main__ - INFO >>> Scheduling appt for 51 on day 1
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Checking schedule for today at 39
+2017-11-14 22:21:28,237 - __main__ - DEBUG >>> Scheduling for 29!
+2017-11-14 22:21:28,237 - __main__ - INFO >>> Scheduling appt for 39 on day 1
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Checking schedule for today at 23
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Scheduling for 30!
+2017-11-14 22:21:28,239 - __main__ - INFO >>> Scheduling appt for 23 on day 1
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Checking schedule for today at 76
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Scheduling for 31!
+2017-11-14 22:21:28,239 - __main__ - INFO >>> Scheduling appt for 76 on day 1
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Checking schedule for today at 24
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Scheduling for 32!
+2017-11-14 22:21:28,239 - __main__ - INFO >>> Scheduling appt for 24 on day 1
+2017-11-14 22:21:28,239 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 27
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Scheduling for 34!
+2017-11-14 22:21:28,240 - __main__ - INFO >>> Scheduling appt for 27 on day 1
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 48
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 5
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Scheduling for 36!
+2017-11-14 22:21:28,240 - __main__ - INFO >>> Scheduling appt for 5 on day 1
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 13
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 58
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Scheduling for 38!
+2017-11-14 22:21:28,240 - __main__ - INFO >>> Scheduling appt for 58 on day 1
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 37
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 40
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Scheduling for 40!
+2017-11-14 22:21:28,240 - __main__ - INFO >>> Scheduling appt for 40 on day 1
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 70
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 22
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Scheduling for 42!
+2017-11-14 22:21:28,240 - __main__ - INFO >>> Scheduling appt for 22 on day 1
+2017-11-14 22:21:28,240 - __main__ - DEBUG >>> Checking schedule for today at 7
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Scheduling for 43!
+2017-11-14 22:21:28,242 - __main__ - INFO >>> Scheduling appt for 7 on day 1
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Checking schedule for today at 4
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Scheduling for 44!
+2017-11-14 22:21:28,242 - __main__ - INFO >>> Scheduling appt for 4 on day 1
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Checking schedule for today at 83
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Scheduling for 45!
+2017-11-14 22:21:28,242 - __main__ - INFO >>> Scheduling appt for 83 on day 1
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Checking schedule for today at 36
+2017-11-14 22:21:28,242 - __main__ - DEBUG >>> Scheduling for 46!
+2017-11-14 22:21:28,243 - __main__ - INFO >>> Scheduling appt for 36 on day 1
+2017-11-14 22:21:28,243 - __main__ - DEBUG >>> Checking schedule for today at 83
+2017-11-14 22:21:28,243 - __main__ - DEBUG >>> Checking schedule for today at 27
+2017-11-14 22:21:28,243 - __main__ - DEBUG >>> Checking schedule for today at 5
+2017-11-14 22:21:28,243 - __main__ - INFO >>> Time:	|	#
+--------------------------------------------------
+0:00    |   ******************
+0:15    |   ******************
+0:30    |   ******************
+0:45    |   ******************
+1:00    |   Joanne Beckner
+1:15    |   Melvin Kloeck
+1:30    |   ******************
+1:45    |   Viola Tart
+2:00    |   ******************
+2:15    |   ******************
+2:30    |   David Suda
+2:45    |   ******************
+3:00    |   Nicole Tran
+3:15    |   Alexa Glory
+3:30    |   Violet Pedraza
+3:45    |   ******************
+4:00    |   Jessica Ervin
+4:15    |   Eric Roberts
+4:30    |   ******************
+4:45    |   William Burkle
+5:00    |   ******************
+5:15    |   ******************
+5:30    |   James Diaz
+5:45    |   Remona Mullen
+6:00    |   Thomas King
+6:15    |   ******************
+6:30    |   ******************
+6:45    |   Louis Smith
+7:00    |   Jimmie Allen
+7:15    |   ******************
+7:30    |   ******************
+7:45    |   ******************
+8:00    |   ******************
+8:15    |   ******************
+8:30    |   ******************
+8:45    |   ******************
+9:00    |   Jennifer Bell
+9:15    |   Claude Nichols
+9:30    |   ******************
+9:45    |   James Eskridge
+10:00    |   Melanie Young
+10:15    |   ******************
+10:30    |   ******************
+10:45    |   ******************
+11:00    |   ******************
+11:15    |   ******************
+11:30    |   Craig Albrecht
+11:45    |   ******************
+12:00    |   Christy Labine
+12:15    |   ******************
+12:30    |   ******************
+12:45    |   John Huey
+13:00    |   ******************
+13:15    |   ******************
+13:30    |   ******************
+13:45    |   ******************
+14:00    |   James Hoggard
+14:15    |   ******************
+14:30    |   Violet Holcomb
+14:45    |   ******************
+15:00    |   ******************
+15:15    |   Marlene Nabb
+15:30    |   ******************
+15:45    |   Agustina Lefevre
+16:00    |   ******************
+16:15    |   ******************
+16:30    |   Joshua Smith
+16:45    |   ******************
+17:00    |   ******************
+17:15    |   Paul Ellis
+17:30    |   Louis Woods
+17:45    |   ******************
+18:00    |   Terry Higdon
+18:15    |   ******************
+18:30    |   Linda Suh
+18:45    |   ******************
+19:00    |   Ted Dietz
+19:15    |   ******************
+19:30    |   ******************
+19:45    |   Carrie Oliver
+20:00    |   ******************
+20:15    |   ******************
+20:30    |   ******************
+20:45    |   Mary Degroot
+21:00    |   Bobbie Mccoy
+21:15    |   ******************
+21:30    |   ******************
+21:45    |   ******************
+22:00    |   ******************
+22:15    |   ******************
+22:30    |   ******************
+22:45    |   ******************
+23:00    |   ******************
+23:15    |   Mark Alfonso
+23:30    |   Donald Hux
+23:45    |   Kevin Carter
+
+2017-11-14 22:21:34,941 - __main__ - INFO >>> Schedule initialized!
+2017-11-14 22:21:34,943 - __main__ - DEBUG >>> Checking schedule for today at 87
+2017-11-14 22:21:34,943 - __main__ - DEBUG >>> Scheduling for 0!
+2017-11-14 22:21:34,943 - __main__ - INFO >>> Scheduling appt for 87 on day 1
+2017-11-14 22:21:34,943 - __main__ - DEBUG >>> Checking schedule for today at 34
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 1!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 34 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 12
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 2!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 12 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 89
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 3!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 89 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 28
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 4!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 28 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 64
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 5!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 64 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 50
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 6!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 50 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Scheduling for 7!
+2017-11-14 22:21:34,944 - __main__ - INFO >>> Scheduling appt for 1 on day 1
+2017-11-14 22:21:34,944 - __main__ - DEBUG >>> Checking schedule for today at 79
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Scheduling for 8!
+2017-11-14 22:21:34,946 - __main__ - INFO >>> Scheduling appt for 79 on day 1
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Checking schedule for today at 76
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Scheduling for 9!
+2017-11-14 22:21:34,946 - __main__ - INFO >>> Scheduling appt for 76 on day 1
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Checking schedule for today at 94
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Scheduling for 10!
+2017-11-14 22:21:34,946 - __main__ - INFO >>> Scheduling appt for 94 on day 1
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Checking schedule for today at 93
+2017-11-14 22:21:34,946 - __main__ - DEBUG >>> Scheduling for 11!
+2017-11-14 22:21:34,946 - __main__ - INFO >>> Scheduling appt for 93 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 47
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 12!
+2017-11-14 22:21:34,947 - __main__ - INFO >>> Scheduling appt for 47 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 36
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 13!
+2017-11-14 22:21:34,947 - __main__ - INFO >>> Scheduling appt for 36 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 31
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 14!
+2017-11-14 22:21:34,947 - __main__ - INFO >>> Scheduling appt for 31 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 83
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 15!
+2017-11-14 22:21:34,947 - __main__ - INFO >>> Scheduling appt for 83 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 92
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 16!
+2017-11-14 22:21:34,947 - __main__ - INFO >>> Scheduling appt for 92 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 76
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 61
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 18!
+2017-11-14 22:21:34,947 - __main__ - INFO >>> Scheduling appt for 61 on day 1
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Checking schedule for today at 68
+2017-11-14 22:21:34,947 - __main__ - DEBUG >>> Scheduling for 19!
+2017-11-14 22:21:34,948 - __main__ - INFO >>> Scheduling appt for 68 on day 1
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Checking schedule for today at 29
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Scheduling for 20!
+2017-11-14 22:21:34,948 - __main__ - INFO >>> Scheduling appt for 29 on day 1
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Checking schedule for today at 60
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Scheduling for 21!
+2017-11-14 22:21:34,948 - __main__ - INFO >>> Scheduling appt for 60 on day 1
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Checking schedule for today at 77
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Scheduling for 22!
+2017-11-14 22:21:34,948 - __main__ - INFO >>> Scheduling appt for 77 on day 1
+2017-11-14 22:21:34,948 - __main__ - DEBUG >>> Checking schedule for today at 4
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 23!
+2017-11-14 22:21:34,950 - __main__ - INFO >>> Scheduling appt for 4 on day 1
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 77
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 36
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 56
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 26!
+2017-11-14 22:21:34,950 - __main__ - INFO >>> Scheduling appt for 56 on day 1
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 56
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 88
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 28!
+2017-11-14 22:21:34,950 - __main__ - INFO >>> Scheduling appt for 88 on day 1
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 35
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 29!
+2017-11-14 22:21:34,950 - __main__ - INFO >>> Scheduling appt for 35 on day 1
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 23
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 30!
+2017-11-14 22:21:34,950 - __main__ - INFO >>> Scheduling appt for 23 on day 1
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 2
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 31!
+2017-11-14 22:21:34,950 - __main__ - INFO >>> Scheduling appt for 2 on day 1
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Checking schedule for today at 59
+2017-11-14 22:21:34,950 - __main__ - DEBUG >>> Scheduling for 32!
+2017-11-14 22:21:34,951 - __main__ - INFO >>> Scheduling appt for 59 on day 1
+2017-11-14 22:21:34,951 - __main__ - DEBUG >>> Checking schedule for today at 26
+2017-11-14 22:21:34,951 - __main__ - DEBUG >>> Scheduling for 33!
+2017-11-14 22:21:34,951 - __main__ - INFO >>> Scheduling appt for 26 on day 1
+2017-11-14 22:21:34,951 - __main__ - DEBUG >>> Checking schedule for today at 16
+2017-11-14 22:21:34,951 - __main__ - DEBUG >>> Scheduling for 34!
+2017-11-14 22:21:34,951 - __main__ - INFO >>> Scheduling appt for 16 on day 1
+2017-11-14 22:21:34,951 - __main__ - DEBUG >>> Checking schedule for today at 18
+2017-11-14 22:21:34,951 - __main__ - DEBUG >>> Scheduling for 35!
+2017-11-14 22:21:34,951 - __main__ - INFO >>> Scheduling appt for 18 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 65
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 36!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 65 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 95
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 37!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 95 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 86
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 38!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 86 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 82
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 39!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 82 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 52
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 40!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 52 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 82
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 43
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 42!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 43 on day 1
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Checking schedule for today at 30
+2017-11-14 22:21:34,953 - __main__ - DEBUG >>> Scheduling for 43!
+2017-11-14 22:21:34,953 - __main__ - INFO >>> Scheduling appt for 30 on day 1
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Checking schedule for today at 63
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Scheduling for 44!
+2017-11-14 22:21:34,954 - __main__ - INFO >>> Scheduling appt for 63 on day 1
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Checking schedule for today at 54
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Scheduling for 45!
+2017-11-14 22:21:34,954 - __main__ - INFO >>> Scheduling appt for 54 on day 1
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Checking schedule for today at 16
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Checking schedule for today at 30
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Checking schedule for today at 51
+2017-11-14 22:21:34,954 - __main__ - DEBUG >>> Scheduling for 48!
+2017-11-14 22:21:34,954 - __main__ - INFO >>> Scheduling appt for 51 on day 1
+2017-11-14 22:21:34,956 - __main__ - DEBUG >>> Checking schedule for today at 59
+2017-11-14 22:21:34,957 - __main__ - INFO >>> Time:	|	#
+--------------------------------------------------
+0:00    |   ***************
+0:15    |   Mark Alfonso
+0:30    |   Ted Dietz
+0:45    |   ***************
+1:00    |   Jessica Ervin
+1:15    |   ***************
+1:30    |   ***************
+1:45    |   ***************
+2:00    |   ***************
+2:15    |   ***************
+2:30    |   ***************
+2:45    |   ***************
+3:00    |   Linda Suh
+3:15    |   ***************
+3:30    |   ***************
+3:45    |   ***************
+4:00    |   Louis Smith
+4:15    |   ***************
+4:30    |   Brendan Cluck
+4:45    |   ***************
+5:00    |   ***************
+5:15    |   ***************
+5:30    |   ***************
+5:45    |   Remona Mullen
+6:00    |   ***************
+6:15    |   ***************
+6:30    |   Dana Muzquiz
+6:45    |   ***************
+7:00    |   Claude Nichols
+7:15    |   Carrie Oliver
+7:30    |   Viola Tart
+7:45    |   Adriane Dixon
+8:00    |   ***************
+8:15    |   ***************
+8:30    |   Bobbie Mccoy
+8:45    |   James Eskridge
+9:00    |   Violet Pedraza
+9:15    |   ***************
+9:30    |   ***************
+9:45    |   ***************
+10:00    |   ***************
+10:15    |   ***************
+10:30    |   ***************
+10:45    |   James Diaz
+11:00    |   ***************
+11:15    |   ***************
+11:30    |   ***************
+11:45    |   Paul Ellis
+12:00    |   ***************
+12:15    |   ***************
+12:30    |   Donald Hux
+12:45    |   William Bedwell
+13:00    |   Melanie Young
+13:15    |   ***************
+13:30    |   Mary Degroot
+13:45    |   ***************
+14:00    |   Kevin Carter
+14:15    |   ***************
+14:30    |   ***************
+14:45    |   Thomas King
+15:00    |   David Suda
+15:15    |   Terry Higdon
+15:30    |   ***************
+15:45    |   Joanne Beckner
+16:00    |   Barry Harris
+16:15    |   Melvin Kloeck
+16:30    |   ***************
+16:45    |   ***************
+17:00    |   Agustina Lefevre
+17:15    |   ***************
+17:30    |   ***************
+17:45    |   ***************
+18:00    |   ***************
+18:15    |   ***************
+18:30    |   ***************
+18:45    |   ***************
+19:00    |   Louis Woods
+19:15    |   Nicole Tran
+19:30    |   ***************
+19:45    |   James Hoggard
+20:00    |   ***************
+20:15    |   ***************
+20:30    |   William Stoudenmire
+20:45    |   Kurt Harris
+21:00    |   ***************
+21:15    |   ***************
+21:30    |   Violet Holcomb
+21:45    |   William Burkle
+22:00    |   John Huey
+22:15    |   Craig Albrecht
+22:30    |   ***************
+22:45    |   ***************
+23:00    |   Christy Labine
+23:15    |   Alexa Glory
+23:30    |   Jimmie Allen
+23:45    |   Sheryl Swanson
+
