@@ -16,11 +16,12 @@ class Day(object):
         self.schedule = {}
 
         # have a slot for every 15 minutes in the day
-        for i in range(0, 24*4):
+        for i in range(0, 8*4):
             self.schedule[i] = None
 
     def get_appt(self, time):
         return self.schedule[time]
+
 
 def translate_slot_to_time(time):
     """
@@ -42,9 +43,9 @@ def translate_slot_to_time(time):
 
     mins = time*15 - (hours*4*15)
     if mins == 0:
-        return "{}:00".format(hours)
+        return "{}:00".format(hours+9 if hours+9 < 13 else ((hours+9)-12))
     else:
-        return "{}:{}".format(hours, mins)
+        return "{}:{}".format(hours+9 if hours+9 < 13 else ((hours+9)-12), mins)
 
     # event handling
 

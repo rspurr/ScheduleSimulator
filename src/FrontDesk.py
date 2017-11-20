@@ -22,19 +22,30 @@ class Driver:
         Initializes the schedule and begins simulation of scheduling
     """
 
-    def __init__(self, length):
+    def __init__(self, length, patients):
         self._log = logger
 
-        # record of states
-        self.states = []
-
-        # day list
+        # create list of days , each with their own schedule
+        self.curr_day = 0
         self.days = []
         for i in range(0, length):
             self.days.append(Day(i))
         self._log.info("Schedule initialized!")
 
-    def update_curr_schedule(self, new_schedule, day_num):
+
+
+        # initialize the patients
+        self.patients = create_patients(patients)
+
+    def advance_day(self):
+
+        # update driver status vals
+        self.curr_day += 1
+
+        # update patients
+        self.update_patients()
+
+    def update_schedule(self, new_schedule, day_num):
         """
         Updates the current_day's schedule
 
@@ -58,6 +69,18 @@ class Driver:
 
         """
         return self.days[day_num].schedule
+
+    def schedule_to_string(self, schedule):
+        ret = "\nTime:\t|\tPatient\n"
+        ret += "-"*50
+        ret += "\n"
+        for key,val in schedule.iteritems():
+            if val is not None:
+                ret += "{}    |   {}\n".format(translate_slot_to_time(key), val.patient.name)
+            else:
+                ret += "{}    |   {}\n".format(translate_slot_to_time(key), "*****************")
+
+        return ret
 
     def schedule_appt(self, appt):
         """
@@ -100,37 +123,63 @@ class Driver:
 
         return avail
 
-    def schedule_to_string(self, schedule):
-        ret = "\nTime:\t|\tPatient\n"
-        ret += "-"*50
-        ret += "\n"
-        for key,val in schedule.iteritems():
-            if val is not None:
-                ret += "{}    |   {}\n".format(translate_slot_to_time(key), val.patient.name)
-            else:
-                ret += "{}    |   {}\n".format(translate_slot_to_time(key), "*****************")
+    def get_patients_info(self):
+        for patient in self.patients:
+            print "ID: {} -- Healthy: {} --- Days Until Appt: {} ".format(patient.id, patient.health, patient.appointments[0].date - curr_day if \
+            len(patient.appointments) > 0 else None)
 
-        return ret
+    def update_patients(self):
+        for patient in self.patients:
+            if len(patient.appointments) > 0:
+                patient.appointments[0].days_since_request += 1
+            # flip health if random chance of sickness is satisfied
+            if patient.health:
+                patient.switch_health() if determine_health(patient.chance_of_sickness) else patient.health
+
+    def get_first_avail(self):
+        # go through days remaining in simulation
+        for day in self.days[self.curr_day:]:
+            # go through time slots for that day
+            for slot in day.times:
+                #if slot is available, return day and slot
+                if day.schedule[slot] is not None:
+                    return day, slot
+                else:
+                    pass
 
 
+# helper functions
 def create_patients(num):
     """
     Creates n amount of patients
     :param int num: number of patients to create
-    :return: list of Patient objects
     """
 
     patients = []
 
     with open("names", "r+") as f:
         for i in range(num):
-            # self._log.debug("Creating patient #{}".format(i))
-            patient = Patient(i)
-            patient.name = f.readline().strip("\n")
-            # patient.appointments.append(Appointment(patient, 1, random.randint(0, 95), 15, 1))
-            patients.append(patient)
+            new_patient = Patient(i)
+            new_patient.name = f.readline().strip("\n")
+
+            # assign a random health value
+            new_patient.health = determine_health(new_patient.chance_of_sickness)
+            # if not healthy, start them off with a scheduled appt
+            if not new_patient.health:
+                new_patient.appointments.append(Appointment(new_patient, random.randint(0,49), random.randint(0, 31), 15, 0))
+            # add to list
+            patients.append(new_patient)
 
     return patients
+
+
+def determine_health(prob):
+    rand = random.random()
+    if rand < prob:
+        return True
+    else:
+        return False
+
 
 def test_conflicts(driver, patients):
     ''' Schedule first patient's appt '''
@@ -142,23 +191,37 @@ def test_conflicts(driver, patients):
     driver.schedule_appt(patients[1].appointments[0])
 
 
+def schedule_for_all(driver, patients):
+    """
+    Schedules an appt for all patients that require one
+    :param driver:
+    :param patients:
+    :return:
+    """
+
+    for patient in patients:
+        if patient.needs_appt:
+            if len(patient.appointments) > 0:
+                logger.debug("Checking schedule for day {} at {}".format(patient.appointments[0].date, patient.appointments[0].time))
+                if driver.check_appt(patient.appointments[0]):
+                    logger.debug("Scheduling for {}!".format(patient.id))
+                    driver.schedule_appt(patient.appointments[0])
+
+
 if __name__ == "__main__":
 
-    driver = Driver(50)
-    patients = create_patients(50)
-    curr_day = driver.days[1]
+    driver = Driver(50, 50)
+    patients = driver.patients
+    curr_day = driver.curr_day
 
     ''' Tests scheduling for multiple patients '''
-    # for patient in patients:
-    #     logger.debug("Checking schedule for today at {}".format(patient.appointments[0].time))
-    #     if driver.check_appt(patient.appointments[0]):
-    #         logger.debug("Scheduling for {}!".format(patient.id))
-    #         driver.schedule_appt(patient.appointments[0])
-    #         curr_day.get_appt(patient.appointments[0].time).patient = patient
+    schedule_for_all(driver, patients)
 
     ''' Tests conflicting scheduling'''
+    #test_conflicts(driver, patients)
 
-    test_conflicts(driver, patients)
+    driver.get_patients_info()
 
-    print driver.schedule_to_string(driver.get_schedule_by_day(1))
+    driver.advance_day()
 
+    driver.get_patients_info()
