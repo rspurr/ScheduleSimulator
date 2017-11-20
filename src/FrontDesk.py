@@ -123,8 +123,7 @@ class Driver:
 
     def get_patients_info(self):
         for patient in self.patients:
-            print "ID: {} -- Healthy: {} --- Days Until Appt: {} ".format(patient.id, patient.health, patient.appointments[0].date - curr_day if \
-            len(patient.appointments) > 0 else None)
+            print "ID: {} -- Healthy: {} --- Days Until Appt: {} ".format(patient.id, patient.health, (patient.appointments[0].date - self.curr_day) if len(patient.appointments) > 0 else 0)
 
     def update_patients(self):
         for patient in self.patients:
