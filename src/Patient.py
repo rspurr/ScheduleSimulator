@@ -18,7 +18,7 @@ class Patient(object):
 
 
     def switch_health(self):
-        self.health = not self.heatlh
+        self.health = not self.health
         self.needs_appt = not self.health
 
 

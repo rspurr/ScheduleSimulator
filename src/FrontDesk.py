@@ -32,8 +32,6 @@ class Driver:
             self.days.append(Day(i))
         self._log.info("Schedule initialized!")
 
-
-
         # initialize the patients
         self.patients = create_patients(patients)
 
