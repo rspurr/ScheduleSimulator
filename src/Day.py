@@ -27,15 +27,9 @@ class Day(object):
         return self.schedule[time].appt
 
     def schedule_to_string(self):
-        ret = "\nTime:\t|\tPatient\n"
-        ret += "-"*50
-        ret += "\n"
-        for key,val in self.schedule.iteritems():
-            if val is not None:
-                ret += "{}    |   {}\n".format(translate_slot_to_time(key), val.patient.name)
-            else:
-                ret += "{}    |   {}\n".format(translate_slot_to_time(key), "*****************")
-
+        ret = ""
+        for i in self.schedule:
+            print i
         return ret
 
     # event handling

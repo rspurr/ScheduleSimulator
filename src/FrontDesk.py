@@ -97,6 +97,7 @@ class Driver:
             self._log.info("Scheduling appt for day {} at time {} for {} mins".format(appt.date, appt.time, appt.duration))
             for i in range(appt_start, appt_end):
                 schedule[i] = appt
+                schedule[i].open = False
 
             return True
         else:
@@ -121,7 +122,7 @@ class Driver:
 
         avail = True
         for i in range(appt_start, appt_end):
-            if schedule[i] is not None or schedule[i].open is False:
+            if schedule[i].open is False:
                 avail = False
 
         return avail
@@ -155,6 +156,7 @@ class Driver:
 
 
 # helper functions
+
 def create_patients(num):
     """
     Creates n amount of patients
@@ -215,18 +217,30 @@ def schedule_for_all(driver, patients):
                 else:
                     print "Couldn't Schedule"
 
+
 if __name__ == "__main__":
 
     driver = Driver(length=180, patients=100)
     patients = driver.patients
     curr_day = driver.curr_day
-    print "Curr Day = {}".format(curr_day)
 
+    print Day.schedule_to_string(driver.days[curr_day])
+
+    '''Test scheduling in a blocked timeslot'''
     new_patient = Patient(101)
-    new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on = curr_day))
+    new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on=curr_day))
 
-    print new_patient.appointments[0]
-    print driver.check_appt(new_patient.appointments[0])
+    assert driver.check_appt(new_patient.appointments[0]) is False
+
+    '''Test scheduling in an open timeslot'''
+    new_patient_2 = Patient(102)
+    new_patient_2.appointments.append(Appointment(new_patient_2, 0, 3, 15, scheduled_on=curr_day))
+
+    assert driver.check_appt(new_patient_2.appointments[0]) is True
+    driver.schedule_appt(new_patient_2.appointments[0])
+
+    # schedule should now have changed timeslot #3 to be unavailable
+    print Day.schedule_to_string(driver.days[curr_day])
 
     ''' Tests scheduling for multiple patients '''
     #schedule_for_all(driver, patients)
