@@ -1,4 +1,4 @@
-from Appointment import Appointment
+from Appointment import translate_slot_to_time
 
 
 class Day(object):
@@ -12,44 +12,47 @@ class Day(object):
     def __init__(self, num):
 
         self.day_num = num
-        self.times = []
-        self.schedule = {}
-
+        self.schedule = []
+        self.percent_avail = 0.2
         # have a slot for every 15 minutes in the day
-        for i in range(0, 8*4):
-            self.schedule[i] = None
+        # schedule N% of appts as open for the given day
+        for i in range(0, int(8*self.percent_avail*4)):
+            self.schedule.append(Timeslot(i, open=True))
+
+        # initialize rest of timeslots but block them from being available for scheduling
+        for i in range(int(8*self.percent_avail*4), 8*4):
+            self.schedule.append(Timeslot(i, open=False))
 
     def get_appt(self, time):
-        return self.schedule[time]
+        return self.schedule[time].appt
 
+    def schedule_to_string(self):
+        ret = "\nTime:\t|\tPatient\n"
+        ret += "-"*50
+        ret += "\n"
+        for key,val in self.schedule.iteritems():
+            if val is not None:
+                ret += "{}    |   {}\n".format(translate_slot_to_time(key), val.patient.name)
+            else:
+                ret += "{}    |   {}\n".format(translate_slot_to_time(key), "*****************")
 
-def translate_slot_to_time(time):
-    """
-    Translates a standard time i.e. "6:15" and turns it into a timeslot we can use for indexing
-
-    :param time: time we want to convert
-    :return: int index the index of the timeslot in the schedule
-
-    """
-
-    mins = 0
-    hours = 0
-    for i in range(time/4):
-        for i in range(0, 4):
-            mins += 15
-            if mins >= 60:
-                hours+=1
-                mins = 0
-
-    mins = time*15 - (hours*4*15)
-    if mins == 0:
-        return "{}:00".format(hours+9 if hours+9 < 13 else ((hours+9)-12))
-    else:
-        return "{}:{}".format(hours+9 if hours+9 < 13 else ((hours+9)-12), mins)
+        return ret
 
     # event handling
 
     #
 
 
+class Timeslot(object):
+    """
+    Timeslot object #TODO doc this
+    """
+    def __init__(self, time, open):
+        self.time = time
+        self.appt = None
+        self.open = open
+
+    def __str__(self):
+        slot = "Time: {}     |     Avail: {}".format(translate_slot_to_time(self.time), self.open)
+        return slot
 

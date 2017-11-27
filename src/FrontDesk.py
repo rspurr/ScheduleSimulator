@@ -4,6 +4,7 @@ import sys
 
 from Patient import Patient
 from Day import *
+from Appointment import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -28,17 +29,28 @@ class Driver:
         # create list of days , each with their own schedule
         self.curr_day = 0
         self.days = []
+        self.day_cycle = 0
+        self.day_cycle_ctr = 0
+
         for i in range(0, length):
             self.days.append(Day(i))
-        self._log.info("Schedule initialized!")
+        self._log.info("Master Schedule initialized!")
 
         # initialize the patients
         self.patients = create_patients(patients)
+
 
     def advance_day(self):
 
         # update driver status vals
         self.curr_day += 1
+        self.day_cycle_ctr += 1
+
+
+        if self.curr_day % 6 == 0:
+            self.day_cycle_ctr = 0
+            self.day_cycle += 1
+            print "NEW CYCLE"
 
         # update patients
         self.update_patients()
@@ -68,24 +80,12 @@ class Driver:
         """
         return self.days[day_num].schedule
 
-    def schedule_to_string(self, schedule):
-        ret = "\nTime:\t|\tPatient\n"
-        ret += "-"*50
-        ret += "\n"
-        for key,val in schedule.iteritems():
-            if val is not None:
-                ret += "{}    |   {}\n".format(translate_slot_to_time(key), val.patient.name)
-            else:
-                ret += "{}    |   {}\n".format(translate_slot_to_time(key), "*****************")
-
-        return ret
-
     def schedule_appt(self, appt):
         """
         Schedules an appointment for the given day if it can
 
         :param appt: appointment to be scheduled
-        :return: nothing
+        :return: True if can schedule, False if not
 
         """
         schedule = driver.get_schedule_by_day(appt.date)
@@ -97,8 +97,12 @@ class Driver:
             self._log.info("Scheduling appt for day {} at time {} for {} mins".format(appt.date, appt.time, appt.duration))
             for i in range(appt_start, appt_end):
                 schedule[i] = appt
+
+            return True
         else:
             self._log.error("Unable to schedule, t{} on day {} is filled".format(appt.time, appt.date))
+
+            return False
 
     def check_appt(self, appt):
         """
@@ -114,9 +118,10 @@ class Driver:
         appt_end = appt_start + duration
 
         schedule = self.get_schedule_by_day(appt.date)
+
         avail = True
         for i in range(appt_start, appt_end):
-            if schedule[i] is not None:
+            if schedule[i] is not None or schedule[i].open is False:
                 avail = False
 
         return avail
@@ -126,6 +131,10 @@ class Driver:
             print "ID: {} -- Healthy: {} --- Days Until Appt: {} ".format(patient.id, patient.health, (patient.appointments[0].date - self.curr_day) if len(patient.appointments) > 0 else 0)
 
     def update_patients(self):
+        """
+        Updates a Patient's time until appt as well as health
+        :return:
+        """
         for patient in self.patients:
             if len(patient.appointments) > 0:
                 patient.appointments[0].days_since_request += 1
@@ -142,7 +151,7 @@ class Driver:
                 if day.schedule[slot] is not None:
                     return day, slot
                 else:
-                    pass
+                    return None, None
 
 
 # helper functions
@@ -203,22 +212,30 @@ def schedule_for_all(driver, patients):
                 if driver.check_appt(patient.appointments[0]):
                     logger.debug("Scheduling for {}!".format(patient.id))
                     driver.schedule_appt(patient.appointments[0])
-
+                else:
+                    print "Couldn't Schedule"
 
 if __name__ == "__main__":
 
-    driver = Driver(50, 50)
+    driver = Driver(length=180, patients=100)
     patients = driver.patients
     curr_day = driver.curr_day
+    print "Curr Day = {}".format(curr_day)
+
+    new_patient = Patient(101)
+    new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on = curr_day))
+
+    print new_patient.appointments[0]
+    print driver.check_appt(new_patient.appointments[0])
 
     ''' Tests scheduling for multiple patients '''
-    schedule_for_all(driver, patients)
+    #schedule_for_all(driver, patients)
 
     ''' Tests conflicting scheduling'''
     #test_conflicts(driver, patients)
 
-    driver.get_patients_info()
+    #driver.get_patients_info()
 
     driver.advance_day()
 
-    driver.get_patients_info()
+    #driver.get_patients_info()

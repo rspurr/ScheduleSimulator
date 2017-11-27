@@ -10,12 +10,13 @@ class Patient(object):
 
     def __init__(self, num):
         self.id = num
+        self.name = ""
+
         self.health = True
         self.needs_appt = False
-        self.appointments = []
-        self.name = ""
         self.chance_of_sickness = 0.2
 
+        self.appointments = []
 
     def switch_health(self):
         self.health = not self.health
