@@ -37,8 +37,12 @@ class Driver:
         self._log.info("Master Schedule initialized!")
 
         # initialize the patients
-        self.patients = create_patients(patients)
+        self.patients = self.create_patients(patients)
 
+        self.release_schedule = [[.2,.3,.4,.5,.6],
+                                 [.3,.4,.5,.6,.7],
+                                 [],
+                                 []]
 
     def advance_day(self):
 
@@ -50,10 +54,12 @@ class Driver:
         if self.curr_day % 6 == 0:
             self.day_cycle_ctr = 0
             self.day_cycle += 1
-            print "NEW CYCLE"
+            print "NEW CYCLE, OPEN UP MORE APPOINTMENTS"
 
         # update patients
         self.update_patients()
+
+        print "\n>>> Cycle Day: {}".format(self.day_cycle_ctr)
 
     def update_schedule(self, new_schedule, day_num):
         """
@@ -94,11 +100,12 @@ class Driver:
         appt_end = appt_start + duration
 
         if self.check_appt(appt):
-            self._log.info("Scheduling appt for day {} at time {} for {} mins".format(appt.date, appt.time, appt.duration))
+            self._log.info("Scheduling appt for for patient {} on day {} at time {} for {} mins".format(appt.patient.id, appt.date, appt.time, appt.duration))
             for i in range(appt_start, appt_end):
+                schedule[i].time = i
                 schedule[i] = appt
                 schedule[i].open = False
-
+            appt.patient.appointments.append(appt)
             return True
         else:
             self._log.error("Unable to schedule, t{} on day {} is filled".format(appt.time, appt.date))
@@ -121,6 +128,9 @@ class Driver:
         schedule = self.get_schedule_by_day(appt.date)
 
         avail = True
+        if appt_end > len(schedule):
+            return False
+
         for i in range(appt_start, appt_end):
             if schedule[i].open is False:
                 avail = False
@@ -142,6 +152,16 @@ class Driver:
             # flip health if random chance of sickness is satisfied
             if patient.health:
                 patient.switch_health() if determine_health(patient.chance_of_sickness) else patient.health
+                if not patient.health:
+                    scheduled = False
+                    for i in range(0, patient.sched_pref):
+                        appt_to_sched = Appointment(patient=patient, date=(self.curr_day+i), time=random.randint(0,31),
+                                                    duration=(15*random.randint(1,4)), scheduled_on=self.curr_day)
+                        if self.check_appt(appt_to_sched):
+                            self.schedule_appt(appt_to_sched)
+                            scheduled = True
+                    if not scheduled:
+                        self._log.info("Failed to schedule appointment {} for patient {}".format(appt_to_sched, patient.id))
 
     def get_first_avail(self):
         # go through days remaining in simulation
@@ -154,31 +174,35 @@ class Driver:
                 else:
                     return None, None
 
+    def create_patients(self, num):
+        """
+        Creates n amount of patients
+        :param int num: number of patients to create
+        """
+
+        patients = []
+
+        with open("names", "r+") as f:
+            for i in range(num):
+                new_patient = Patient(i)
+                new_patient.name = f.readline().strip("\n")
+
+                # assign a random health value
+                # new_patient.health = determine_health(new_patient.chance_of_sickness)
+                # if not healthy, start them off with a scheduled appt
+                if not new_patient.health:
+                    print "Scheduling appointment for patient {}".format(new_patient.id)
+                    new_patient.appointments.append(
+                        Appointment(patient=new_patient, date=(self.curr_day + new_patient.sched_pref),
+                                    time=random.randint(0, 31), duration=15*random.randint(0,4),
+                                    scheduled_on=self.curr_day))
+                # add to list
+                patients.append(new_patient)
+
+        return patients
+
 
 # helper functions
-
-def create_patients(num):
-    """
-    Creates n amount of patients
-    :param int num: number of patients to create
-    """
-
-    patients = []
-
-    with open("names", "r+") as f:
-        for i in range(num):
-            new_patient = Patient(i)
-            new_patient.name = f.readline().strip("\n")
-
-            # assign a random health value
-            new_patient.health = determine_health(new_patient.chance_of_sickness)
-            # if not healthy, start them off with a scheduled appt
-            if not new_patient.health:
-                new_patient.appointments.append(Appointment(new_patient, random.randint(0,49), random.randint(0, 31), 15, 0))
-            # add to list
-            patients.append(new_patient)
-
-    return patients
 
 
 def determine_health(prob):
@@ -222,25 +246,24 @@ if __name__ == "__main__":
 
     driver = Driver(length=180, patients=100)
     patients = driver.patients
-    curr_day = driver.curr_day
 
-    print Day.schedule_to_string(driver.days[curr_day])
+    print Day.schedule_to_string(driver.days[driver.curr_day])
 
     '''Test scheduling in a blocked timeslot'''
-    new_patient = Patient(101)
-    new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on=curr_day))
-
-    assert driver.check_appt(new_patient.appointments[0]) is False
+    # new_patient = Patient(101)
+    # new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on=curr_day))
+    #
+    # assert driver.check_appt(new_patient.appointments[0]) is False
 
     '''Test scheduling in an open timeslot'''
-    new_patient_2 = Patient(102)
-    new_patient_2.appointments.append(Appointment(new_patient_2, 0, 3, 15, scheduled_on=curr_day))
-
-    assert driver.check_appt(new_patient_2.appointments[0]) is True
-    driver.schedule_appt(new_patient_2.appointments[0])
+    # new_patient_2 = Patient(102)
+    # new_patient_2.appointments.append(Appointment(new_patient_2, 0, 3, 15, scheduled_on=curr_day))
+    #
+    # assert driver.check_appt(new_patient_2.appointments[0]) is True
+    # driver.schedule_appt(new_patient_2.appointments[0])
 
     # schedule should now have changed timeslot #3 to be unavailable
-    print Day.schedule_to_string(driver.days[curr_day])
+    # print Day.schedule_to_string(driver.days[curr_day])
 
     ''' Tests scheduling for multiple patients '''
     #schedule_for_all(driver, patients)
@@ -250,6 +273,9 @@ if __name__ == "__main__":
 
     #driver.get_patients_info()
 
-    driver.advance_day()
+    for i in range(0,5):
+        driver.advance_day()
 
-    #driver.get_patients_info()
+        #driver.get_patients_info()
+
+        print Day.schedule_to_string(driver.days[driver.curr_day])

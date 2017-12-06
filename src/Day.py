@@ -27,9 +27,9 @@ class Day(object):
         return self.schedule[time].appt
 
     def schedule_to_string(self):
-        ret = ""
+        ret = ">>> Day: {}\n".format(self.day_num)
         for i in self.schedule:
-            print i
+            ret += "{}\n".format(str(i))
         return ret
 
     # event handling
@@ -47,6 +47,9 @@ class Timeslot(object):
         self.open = open
 
     def __str__(self):
-        slot = "Time: {}     |     Avail: {}".format(translate_slot_to_time(self.time), self.open)
+        if self.appt is None or self.open:
+            slot = "Time: {}     |     Avail: {}".format(translate_slot_to_time(self.time), self.open)
+        else:
+            slot = "Time: {}     |     Patient: {}".format(translate_slot_to_time(self.time), self.appt.patient.id)
         return slot
 

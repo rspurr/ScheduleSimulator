@@ -23,6 +23,9 @@ class Patient(object):
 
     def switch_health(self):
         self.health = not self.health
-        self.needs_appt = not self.health
+        self.needs_appt = not self.needs_appt
+
+        if self.health is True and len(self.appointments) is not 0:
+            print("Patient LOST!")
 
 
