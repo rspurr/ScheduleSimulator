@@ -30,10 +30,17 @@ class Driver:
         self.curr_day = 0
         self.days = []
         self.day_cycle = 0
-        self.day_cycle_ctr = 0
+        self.day_cycle_ctr = 1
 
         for i in range(0, length):
-            self.days.append(Day(i))
+            if self.day_cycle_ctr % 6 == 0:
+                self.day_cycle_ctr = 1
+            self.days.append(Day(i, self.day_cycle_ctr))
+            self.day_cycle_ctr += 1
+
+
+        self.day_cycle_ctr = 1
+
         self._log.info("Master Schedule initialized!")
 
         # initialize the patients
@@ -50,16 +57,13 @@ class Driver:
         self.curr_day += 1
         self.day_cycle_ctr += 1
 
-
         if self.curr_day % 6 == 0:
-            self.day_cycle_ctr = 0
+            self.day_cycle_ctr = 1
             self.day_cycle += 1
-            print "NEW CYCLE, OPEN UP MORE APPOINTMENTS"
+            print "\n>>> Cycle {} has finished.".format(self.day_cycle-1)
 
         # update patients
         self.update_patients()
-
-        print "\n>>> Cycle Day: {}".format(self.day_cycle_ctr)
 
     def update_schedule(self, new_schedule, day_num):
         """
@@ -103,7 +107,7 @@ class Driver:
             self._log.info("Scheduling appt for for patient {} on day {} at time {} for {} mins".format(appt.patient.id, appt.date, appt.time, appt.duration))
             for i in range(appt_start, appt_end):
                 schedule[i].time = i
-                schedule[i] = appt
+                schedule[i].appt = appt
                 schedule[i].open = False
             appt.patient.appointments.append(appt)
             return True
@@ -154,14 +158,21 @@ class Driver:
                 patient.switch_health() if determine_health(patient.chance_of_sickness) else patient.health
                 if not patient.health:
                     scheduled = False
+                    appt_to_sched = None
+
+                    # loop through patient's schedule preferences and attempt to satisfy one
+
                     for i in range(0, patient.sched_pref):
                         appt_to_sched = Appointment(patient=patient, date=(self.curr_day+i), time=random.randint(0,31),
                                                     duration=(15*random.randint(1,4)), scheduled_on=self.curr_day)
-                        if self.check_appt(appt_to_sched):
+
+                        # schedule the appointment they want if we can
+                        if self.check_appt(appt_to_sched) and scheduled is not True:
                             self.schedule_appt(appt_to_sched)
                             scheduled = True
-                    if not scheduled:
-                        self._log.info("Failed to schedule appointment {} for patient {}".format(appt_to_sched, patient.id))
+                            self._log.info(
+                                "Failed to schedule appointment {} for patient {}".format(appt_to_sched, patient.id))
+
 
     def get_first_avail(self):
         # go through days remaining in simulation
@@ -273,7 +284,7 @@ if __name__ == "__main__":
 
     #driver.get_patients_info()
 
-    for i in range(0,5):
+    for i in range(0,2):
         driver.advance_day()
 
         #driver.get_patients_info()

@@ -23,8 +23,6 @@ class Appointment(object):
 
         self.attended = None
 
-    def __str__(self):
-        return "Day: {}     |    Time: {}     |     Patient: {}".format(self.date, translate_slot_to_time(self.time), self.patient.id)
 
 
 def translate_slot_to_time(time):

@@ -9,9 +9,10 @@ class Day(object):
 
     """
 
-    def __init__(self, num):
+    def __init__(self, num, cycle_num):
 
         self.day_num = num
+        self.day_in_cycle = cycle_num
         self.schedule = []
         self.percent_avail = 0.2
         # have a slot for every 15 minutes in the day
@@ -28,9 +29,23 @@ class Day(object):
 
     def schedule_to_string(self):
         ret = ">>> Day: {}\n".format(self.day_num)
+        ret += ">>> Cycle Day: {}\n".format(self.cycle_to_day(self.day_in_cycle))
+
         for i in self.schedule:
-            ret += "{}\n".format(str(i))
+            ret += "{}\n".format(Timeslot.__str__(i))
         return ret
+
+    def cycle_to_day(self, day_in_cycle):
+        if self.day_in_cycle == 1:
+            return "Mon"
+        elif self.day_in_cycle == 2:
+            return "Tue"
+        elif self.day_in_cycle == 3:
+            return "Wed"
+        elif self.day_in_cycle == 4:
+            return "Thu"
+        elif self.day_in_cycle == 5:
+            return "Fri"
 
     # event handling
 
