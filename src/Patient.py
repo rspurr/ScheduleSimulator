@@ -22,10 +22,13 @@ class Patient(object):
         self.appointments = []
 
     def switch_health(self):
-        self.health = not self.health
+        if self.health is True:
+            self.health = False
         self.needs_appt = not self.needs_appt
 
         if self.health is True and len(self.appointments) is not 0:
-            print("Patient LOST!")
+            print("Patient returned to healthy pool before appt!")
+            for appt in self.appointments:
+                print appt
 
 

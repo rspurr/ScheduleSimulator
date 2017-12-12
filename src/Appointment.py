@@ -21,8 +21,6 @@ class Appointment(object):
         self.days_since_request = 0
         self.duration = duration
 
-        self.attended = None
-
     def __str__(self):
         return "Day {}     |    Time: {}     |     Patient: {}".format(self.date, translate_slot_to_time(self.time), self.patient.id)
 

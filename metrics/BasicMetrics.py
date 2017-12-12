@@ -7,4 +7,5 @@ class BasicMetrics:
 
         self.requests_total = 0
         self.lost_patients = 0
+
         self.appts_attended = 0
