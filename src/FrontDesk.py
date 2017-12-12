@@ -106,8 +106,6 @@ class Driver:
 
         self.met.appts_attended += len(patients_attended)
 
-
-
     def update_schedule(self, new_schedule, day_num):
         """
         Updates the current_day's schedule
@@ -199,7 +197,9 @@ class Driver:
 
             # flip health if random chance of sickness is satisfied
             # day in cycle determines chance of the person calling
-            patient.switch_health() if determine_health(self.chance_of_call[self.days[self.curr_day].day_in_cycle-1]) else None
+            if determine_health(self.chance_of_call[self.days[self.curr_day].day_in_cycle-1]):
+                patient.switch_health()
+
             if not patient.health:
                 self.met.requests_total += 1
 
