@@ -28,7 +28,7 @@ class Day(object):
         return self.schedule[time].appt
 
     def schedule_to_string(self):
-        ret = ">>> Day: {}\n".format(self.day_num)
+        ret = "----- Day {} -----\n".format(self.day_num)
         ret += ">>> Cycle Day: {}\n".format(self.cycle_to_day(self.day_in_cycle))
 
         for i in self.schedule:
@@ -46,6 +46,8 @@ class Day(object):
             return "Thu"
         elif self.day_in_cycle == 5:
             return "Fri"
+        elif self.day_in_cycle == 6:
+            return "Sat"
 
     # event handling
 

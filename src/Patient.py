@@ -18,7 +18,7 @@ class Patient(object):
         self.needs_appt = False
         self.chance_of_sickness = 0.2
 
-        self.sched_pref = random.randint(0, 6)
+        self.sched_pref = random.randint(0, 5)
         self.appointments = []
 
     def switch_health(self):
