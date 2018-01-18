@@ -80,35 +80,40 @@ class Driver:
                 fc_index = day.schedule.index(first_closed)
 
                 for i in range(fc_index, int(fc_index + (self.release_schedule[0])*32)):
-                    print "Opening slot : Day {} {}".format(day.day_num, day.schedule[i])
+                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
+                    day.schedule[i].open = True
 
             elif day.day_num - 3 == self.curr_day:
                 first_closed = day.get_first_closed_slot()
                 fc_index = day.schedule.index(first_closed)
 
                 for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
+                    day.schedule[i].open = True
 
             elif day.day_num - 7 == self.curr_day:
                 first_closed = day.get_first_closed_slot()
                 fc_index = day.schedule.index(first_closed)
 
                 for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
+                    day.schedule[i].open = True
 
             elif day.day_num - 14 == self.curr_day:
                 first_closed = day.get_first_closed_slot()
                 fc_index = day.schedule.index(first_closed)
 
                 for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
+                    day.schedule[i].open = True
 
             elif day.day_num - 28 == self.curr_day:
                 first_closed = day.get_first_closed_slot()
                 fc_index = day.schedule.index(first_closed)
 
                 for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
+                    day.schedule[i].open = True
 
 
         if self.curr_day % 7 == 0:
