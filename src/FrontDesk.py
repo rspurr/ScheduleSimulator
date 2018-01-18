@@ -52,12 +52,9 @@ class Driver:
         # separate healthy and sick patients
         self.healthy = self.patients
         self.sick = []
+        '''                       1  3   7  14   28 '''
+        self.release_schedule = [.2, .2, .2, .2, .2]
 
-        self.release_schedule = [[.2,.3,.4,.5,.6],
-                                 [.3,.4,.5,.6,.7],
-                                 [],
-                                 []
-                                 ]
 
         # calculate probabilities of
 
@@ -76,6 +73,43 @@ class Driver:
         # update driver status vals
         self.curr_day += 1
         self.day_cycle_ctr += 1
+
+        for day in self.days:
+            if day.day_num - 1 == self.curr_day:
+                first_closed = day.get_first_closed_slot()
+                fc_index = day.schedule.index(first_closed)
+
+                for i in range(fc_index, int(fc_index + (self.release_schedule[0])*32)):
+                    print "Opening slot : Day {} {}".format(day.day_num, day.schedule[i])
+
+            elif day.day_num - 3 == self.curr_day:
+                first_closed = day.get_first_closed_slot()
+                fc_index = day.schedule.index(first_closed)
+
+                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
+                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+
+            elif day.day_num - 7 == self.curr_day:
+                first_closed = day.get_first_closed_slot()
+                fc_index = day.schedule.index(first_closed)
+
+                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
+                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+
+            elif day.day_num - 14 == self.curr_day:
+                first_closed = day.get_first_closed_slot()
+                fc_index = day.schedule.index(first_closed)
+
+                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
+                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+
+            elif day.day_num - 28 == self.curr_day:
+                first_closed = day.get_first_closed_slot()
+                fc_index = day.schedule.index(first_closed)
+
+                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
+                    print "Opening slot : Day {} | {}".format(day.day_num, day.schedule[i])
+
 
         if self.curr_day % 7 == 0:
             self.day_cycle_ctr = 1
@@ -151,6 +185,7 @@ class Driver:
                 schedule[i].appt = appt
                 schedule[i].open = False
             appt.patient.appointments.append(appt)
+
             return True
         else:
             self._log.error("Unable to schedule, t{} on day {} is filled".format(appt.time, appt.date))
@@ -167,6 +202,8 @@ class Driver:
         """
 
         appt_start = appt.time
+        if appt.time == -1:
+            return False
         duration = appt.duration / 15
         appt_end = appt_start + duration
 
@@ -179,7 +216,6 @@ class Driver:
         for i in range(appt_start, appt_end):
             if schedule[i].open is False:
                 avail = False
-
         return avail
 
     def get_patients_info(self):
@@ -218,12 +254,15 @@ class Driver:
                                        time= self.get_first_avail(self.curr_day+i),
                                         duration=(15*random.randint(1,4)), scheduled_on=self.curr_day)
 
+
                     # schedule the appointment they want if we can
                     if self.check_appt(appt) and scheduled is not True:
                         self.schedule_appt(appt)
                         scheduled = True
                         break
                     else:
+                        '''print "Failed to schedule appt for for patient {} on day {} at time {} for {} mins".format(
+                                appt.patient.id, appt.date, appt.time, appt.duration)'''
                         self._log.info(
                             "Failed to schedule appt for for patient {} on day {} at time {} for {} mins".format(
                                 appt.patient.id, appt.date, appt.time, appt.duration))
@@ -349,7 +388,7 @@ if __name__ == "__main__":
 
     #driver.get_patients_info()
 
-    for i in range(0,25):
+    for i in range(0, 5):
 
         driver.advance_day()
         appt_ctr = 0

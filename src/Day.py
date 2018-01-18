@@ -53,6 +53,10 @@ class Day(object):
 
     #
 
+    def get_first_closed_slot(self):
+        for slot in self.schedule:
+            if slot.open is False and slot.appt is None:
+                return slot
 
 class Timeslot(object):
     """
