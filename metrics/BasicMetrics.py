@@ -8,7 +8,6 @@ class BasicMetrics:
         self.appts_not_scheduled = 0
 
         self.requests_total = 0
-        self.lost_patients = 0
 
         self.appts_attended = 0
 
@@ -18,8 +17,7 @@ class BasicMetrics:
         self.indicies = ["Appts Scheduled",
                     "Appts Not Scheduled",
                     "Total Appt Requests",
-                    "Appts. Attended",
-                    "Total Lost Patients"]
+                    "Appts. Attended"]
 
         self.metrics_df = pd.DataFrame(columns=self.indicies)
         pd.set_option("max_colwidth", 50)
@@ -28,7 +26,7 @@ class BasicMetrics:
 
 
         data = [self.appts_scheduled, self.appts_not_scheduled,
-                self.requests_total, self.appts_attended, self.lost_patients]
+                self.requests_total, self.appts_attended]
 
         self.metrics_df.loc[day] = data
 

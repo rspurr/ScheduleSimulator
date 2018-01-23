@@ -377,11 +377,6 @@ def run_simulation(length):
 
         driver.met.append_metrics_to_df(i)
 
-
-        # driver.get_patients_info()
-
-        # print Day.schedule_to_string(driver.days[driver.curr_day])
-
     driver.met.metrics_df.to_excel(driver.met.wrt, "Simulation Data")
     driver.met.wrt.save()
 
@@ -414,5 +409,5 @@ if __name__ == "__main__":
 
     # driver.get_patients_info()
 
-    run_simulation(5)
+    run_simulation(50)
 
