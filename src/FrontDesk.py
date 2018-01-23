@@ -2,6 +2,7 @@ import logging
 import random
 import sys
 import numpy
+import pandas as pd
 
 from Patient import Patient
 from Day import *
@@ -357,8 +358,10 @@ def run_simulation(length):
 
 
     driver.tracker.append_metrics_to_df(driver.patients)
-    driver.met.metrics_df.to_excel(driver.met.wrt, "Simulation Data")
-    driver.met.wrt.save()
+    writer = pd.ExcelWriter("Metrics.xlsx", engine="openpyxl")
+    driver.met.metrics_df.to_excel(writer, "Simulation Data")
+    driver.tracker.metrics_df.to_excel(writer, "Patient Data")
+    writer.save()
 
 if __name__ == "__main__":
 

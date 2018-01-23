@@ -10,9 +10,6 @@ class BasicMetrics:
         self.requests_total = 0
         self.appts_attended = 0
 
-        self.wrt = pd.ExcelWriter("Metrics.xlsx",
-                                  engine="xlsxwriter")
-
         self.indicies = ["Appts Scheduled",
                     "Appts Not Scheduled",
                     "Total Appt Requests",
@@ -33,10 +30,6 @@ class PatientMetrics:
 
     def __init__(self):
 
-
-        self.wrt = pd.ExcelWriter("Metrics.xlsx",
-                                  engine="xlsxwriter")
-
         self.indicies = ["Days Until Appt",
                          "Appointments Scheduled",
                          "Appts. Attended"]
@@ -52,9 +45,8 @@ class PatientMetrics:
             ids.append(patient.id)
             data = [patient.days_until_appt, patient.total_appts, patient.appts_attended]
 
-            self.metrics_df.append(pd.DataFrame([data], index=ids))
+            self.metrics_df.loc[patient.id] = data
 
-        print self.metrics_df
 
 
 
