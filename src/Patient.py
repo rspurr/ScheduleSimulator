@@ -1,5 +1,5 @@
 import random
-
+from metrics.BasicMetrics import PatientMetrics
 
 class Patient(object):
     """
@@ -20,6 +20,11 @@ class Patient(object):
 
         self.sched_pref = random.randint(0, 28)
         self.appointments = []
+
+        self.days_until_appt = 0
+        self.total_appts = 0
+        self.appts_attended = 0
+
 
     def switch_health(self):
         if self.health is True:

@@ -6,7 +6,7 @@ import numpy
 from Patient import Patient
 from Day import *
 from Appointment import *
-from metrics.BasicMetrics import BasicMetrics
+from metrics.BasicMetrics import BasicMetrics, PatientMetrics
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -50,7 +50,7 @@ class Driver:
         self.patients = self.create_patients(patients)
 
         # separate healthy and sick patients
-        self.healthy = self.patients
+        self.healthy = []
         self.sick = []
 
         self.release_schedule = {1: .1,
@@ -68,6 +68,7 @@ class Driver:
         self.chance_of_call = list(map(lambda x: x / sum_calls, calls_per_day))
 
         self.met = BasicMetrics()
+        self.tracker = PatientMetrics()
 
     ''' Simulation Code '''
 
@@ -85,11 +86,9 @@ class Driver:
 
             first_closed = release_day.get_first_closed_slot()
             fc_index = release_day.schedule.index(first_closed)
-            print release_day.day_num, self.release_schedule[day]
             for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * 32)):
                 self._log.info("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[i]))
                 release_day.schedule[i].open = True
-                print release_day.schedule[i]
 
         # update driver status vals
         self.curr_day += 1
@@ -113,6 +112,7 @@ class Driver:
                 if slot.appt.patient in self.sick:
                     if slot.appt.patient.id not in patients_attended:
                         patients_attended.append(slot.appt.patient.id)
+                        slot.appt.patient.appts_attended += 1
 
                     slot.appt.patient.appointments.remove(slot.appt)
 
@@ -154,7 +154,10 @@ class Driver:
                 schedule[i].time = i
                 schedule[i].appt = appt
                 schedule[i].open = False
+            # update patient records
             appt.patient.appointments.append(appt)
+            appt.patient.days_until_appt = appt.date - self.curr_day
+            appt.patient.total_appts += 1
 
             return True
         else:
@@ -352,6 +355,8 @@ def run_simulation(length):
 
         driver.met.append_metrics_to_df(i)
 
+
+    driver.tracker.append_metrics_to_df(driver.patients)
     driver.met.metrics_df.to_excel(driver.met.wrt, "Simulation Data")
     driver.met.wrt.save()
 
@@ -384,5 +389,5 @@ if __name__ == "__main__":
 
     # driver.get_patients_info()
 
-    run_simulation(1)
+    run_simulation(3)
 
