@@ -52,8 +52,12 @@ class Driver:
         # separate healthy and sick patients
         self.healthy = self.patients
         self.sick = []
-        '''                       1  3   7  14   28 '''
-        self.release_schedule = [.1, .2, .2, .2, .2]
+
+        self.release_schedule = {1: .1,
+                                 3: .2,
+                                 7: .3,
+                                 14: .2,
+                                 28: .1}
 
         ''' calculate probabilities of a call from a sick patient depending
             on day of week '''
@@ -75,55 +79,26 @@ class Driver:
         '''
         self.sim_appts()
 
+        # release slots in specified day range
+        for day in [1, 3, 7, 14, 28]:
+            release_day = self.days[self.curr_day + day]
+
+            first_closed = release_day.get_first_closed_slot()
+            fc_index = release_day.schedule.index(first_closed)
+            print release_day.day_num, self.release_schedule[day]
+            for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * 32)):
+                self._log.info("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[i]))
+                release_day.schedule[i].open = True
+                print release_day.schedule[i]
+
         # update driver status vals
         self.curr_day += 1
         self.day_cycle_ctr += 1
 
-        for day in self.days:
-            if day.day_num - 1 == self.curr_day:
-                first_closed = day.get_first_closed_slot()
-                fc_index = day.schedule.index(first_closed)
-
-                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
-                    day.schedule[i].open = True
-
-            elif day.day_num - 3 == self.curr_day:
-                first_closed = day.get_first_closed_slot()
-                fc_index = day.schedule.index(first_closed)
-
-                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
-                    day.schedule[i].open = True
-
-            elif day.day_num - 7 == self.curr_day:
-                first_closed = day.get_first_closed_slot()
-                fc_index = day.schedule.index(first_closed)
-
-                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
-                    day.schedule[i].open = True
-
-            elif day.day_num - 14 == self.curr_day:
-                first_closed = day.get_first_closed_slot()
-                fc_index = day.schedule.index(first_closed)
-
-                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
-                    day.schedule[i].open = True
-
-            elif day.day_num - 28 == self.curr_day:
-                first_closed = day.get_first_closed_slot()
-                fc_index = day.schedule.index(first_closed)
-
-                for i in range(fc_index, int(fc_index + (self.release_schedule[0]) * 32)):
-                    self._log.info("Opening slot : Day {} {}".format(day.day_num, day.schedule[i]))
-                    day.schedule[i].open = True
-
         if self.curr_day % 7 == 0:
             self.day_cycle_ctr = 1
             self.day_cycle += 1
-            print "\n>>> Cycle {} has finished.".format(self.day_cycle - 1)
+            print "\n>>> Week (cycle) {} has finished.".format(self.day_cycle - 1)
 
         # update patients
         self.update_patients()
@@ -364,7 +339,7 @@ def run_simulation(length):
         for slot in driver.days[driver.curr_day].schedule:
             if slot.appt is not None:
                 appt_ctr += 1
-        print ("\n>>>>>> DAY {} <<<<<<<\n".format(driver.curr_day))
+        '''print ("\n>>>>>> DAY {} <<<<<<<\n".format(driver.curr_day))
         print "----- Scheduling Metrics -----"
         print ">>> Scheduled Total: {}\n>>> Failed to Schedule Total: {}".format(driver.met.appts_scheduled,
                                                                                  driver.met.appts_not_scheduled)
@@ -373,7 +348,7 @@ def run_simulation(length):
                                                                driver.met.requests_total)
 
         print "----- Patient Metrics -----"
-        print ">>> Healthy: {}\n>>> Sick: {}".format(len(driver.healthy), len(driver.sick))
+        print ">>> Healthy: {}\n>>> Sick: {}".format(len(driver.healthy), len(driver.sick))'''
 
         driver.met.append_metrics_to_df(i)
 
@@ -409,5 +384,5 @@ if __name__ == "__main__":
 
     # driver.get_patients_info()
 
-    run_simulation(50)
+    run_simulation(1)
 
