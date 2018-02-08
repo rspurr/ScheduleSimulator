@@ -57,6 +57,8 @@ class Day(object):
         for slot in self.schedule:
             if slot.open is False and slot.appt is None:
                 return slot
+            else:
+                return -1
 
 class Timeslot(object):
     """

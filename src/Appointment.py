@@ -1,5 +1,5 @@
 import datetime
-from FrontDesk import Driver
+from FrontDesk import FrontDesk
 
 
 class Appointment(object):
@@ -13,13 +13,13 @@ class Appointment(object):
     """
 
     def __init__(self, patient, date, time, duration, scheduled_on):
-
         self.patient = patient
         self.date = date
         self.time = time
         self.scheduled_date = scheduled_on
         self.days_since_request = 0
         self.duration = duration
+
 
     def __str__(self):
         return "Day {}     |    Time: {}     |     Patient: {}".format(self.date, translate_slot_to_time(self.time), self.patient.id)

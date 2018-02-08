@@ -8,6 +8,7 @@ from Patient import Patient
 from Day import *
 from Appointment import *
 from metrics.BasicMetrics import BasicMetrics, PatientMetrics
+import config as conf
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -23,12 +24,12 @@ log_stream_handler.setFormatter(formatter)
 # logger.addHandler(log_handler)
 
 
-class Driver:
+class FrontDesk:
     """
         Initializes the schedule and begins simulation of scheduling
     """
 
-    def __init__(self, length, patients):
+    def __init__(self, scheduling_horizon, patients):
         self._log = logger
 
         # create list of days , each with their own schedule
@@ -37,7 +38,7 @@ class Driver:
         self.day_cycle = 0
         self.day_cycle_ctr = 0
 
-        for i in range(0, length):
+        for i in range(0, scheduling_horizon+1):
             self.day_cycle_ctr += 1
             if self.day_cycle_ctr % 7 == 0:
                 self.day_cycle_ctr = 1
@@ -54,11 +55,12 @@ class Driver:
         self.healthy = []
         self.sick = []
 
-        self.release_schedule = {1: .1,
-                                 3: .2,
-                                 7: .3,
-                                 14: .2,
-                                 28: .1}
+        self.release_schedule = conf.release_schedule
+
+        try:
+            self.scheduling_policy = getattr(FrontDesk, conf.simulation['policy'])
+        except AttributeError:
+            raise NotImplementedError("Policy not yet implemented.")
 
         ''' calculate probabilities of a call from a sick patient depending
             on day of week '''
@@ -68,7 +70,7 @@ class Driver:
 
         self.chance_of_call = list(map(lambda x: x / sum_calls, calls_per_day))
 
-        self.met = BasicMetrics()
+        self.metrics = BasicMetrics()
         self.tracker = PatientMetrics()
 
     ''' Simulation Code '''
@@ -79,22 +81,33 @@ class Driver:
         after each day for the specified range of days.  Also updates cycle and day information vars.
         :return:
         '''
+        self.metrics.reset_daily_values()
+        if len(self.sick) > 0 and len(self.healthy) > 0:
+            self.metrics.sick_to_healthy_ratio = float(len(self.sick))/float(len(self.healthy))
         self.sim_appts()
-
         # release slots in specified day range
         for day in [1, 3, 7, 14, 28]:
-            release_day = self.days[self.curr_day + day]
 
-            first_closed = release_day.get_first_closed_slot()
-            fc_index = release_day.schedule.index(first_closed)
-            for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * 32)):
-                self._log.info("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[i]))
-                release_day.schedule[i].open = True
+            if self.curr_day+day < len(self.days):
+                release_day = self.days[self.curr_day + day]
+                next_closed = release_day.get_first_closed_slot()
+                if next_closed != -1:
+                    nc_index = release_day.schedule.index(next_closed)
+                    num_released = 0
+                    num_to_be_released = int(32*self.release_schedule[day])
+                    # loop through and release n amount of slots
+                    while num_released != num_to_be_released:
+                        print num_released
+                        if nc_index >= 32:
+                            nc_index = 0
 
-        # update driver status vals
-        self.curr_day += 1
-        self.day_cycle_ctr += 1
-
+                        if release_day.schedule[nc_index].open is False:
+                            print "yay"
+                            release_day.schedule[nc_index].open = True
+                            self._log.info("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[nc_index]))
+                            num_released += 1
+                        else:
+                            nc_index += 1
         if self.curr_day % 7 == 0:
             self.day_cycle_ctr = 1
             self.day_cycle += 1
@@ -102,6 +115,9 @@ class Driver:
 
         # update patients
         self.update_patients()
+        # update fd status vals
+        self.curr_day += 1
+        self.day_cycle_ctr += 1
 
     def sim_appts(self):
         patients_attended = []
@@ -114,6 +130,7 @@ class Driver:
                     if slot.appt.patient.id not in patients_attended:
                         patients_attended.append(slot.appt.patient.id)
                         slot.appt.patient.appts_attended += 1
+                        print "attended"
 
                     slot.appt.patient.appointments.remove(slot.appt)
 
@@ -122,7 +139,8 @@ class Driver:
                     if slot.appt.patient not in self.healthy:
                         self.healthy.append(slot.appt.patient)
 
-        self.met.appts_attended += len(patients_attended)
+        self.metrics.appts_attended += len(patients_attended)
+
 
     def get_schedule_by_day(self, day_num):
         """
@@ -132,7 +150,7 @@ class Driver:
         :return: the schedule of the day specified
 
         """
-        return self.days[day_num].schedule
+        return self.days[day_num-1].schedule
 
     def schedule_appt(self, appt):
         """
@@ -142,7 +160,7 @@ class Driver:
         :return: True if can schedule, False if not
 
         """
-        schedule = driver.get_schedule_by_day(appt.date)
+        schedule = fd.get_schedule_by_day(appt.date)
         appt_start = appt.time
         duration = appt.duration / 15
         appt_end = appt_start + duration
@@ -175,40 +193,46 @@ class Driver:
 
         """
 
-        appt_start = appt.time
-        if appt.time == -1:
+        if appt.time is not None:
+
+            appt_start = appt.time
+            if appt.time == -1:
+                return False
+            duration = appt.duration / 15
+            appt_end = appt_start + duration
+
+            schedule = self.get_schedule_by_day(appt.date)
+
+            avail = True
+            if appt_end > len(schedule):
+                return False
+
+            for i in range(appt_start, appt_end):
+                if schedule[i].open is False:
+                    avail = False
+            return avail
+        else:
             return False
-        duration = appt.duration / 15
-        appt_end = appt_start + duration
-
-        schedule = self.get_schedule_by_day(appt.date)
-
-        avail = True
-        if appt_end > len(schedule):
-            return False
-
-        for i in range(appt_start, appt_end):
-            if schedule[i].open is False:
-                avail = False
-        return avail
 
     def update_patients(self):
         """
         Updates a Patient's time until appt as well as health
         :return:
         """
+        prob_call = self.chance_of_call[self.days[self.curr_day].day_in_cycle - 1]
         for patient in self.patients:
             if len(patient.appointments) > 0:
                 patient.appointments[0].days_since_request += 1
 
             # flip health if random chance of sickness is satisfied
             # day in cycle determines chance of the person calling
-            if determine_health(self.chance_of_call[self.days[self.curr_day].day_in_cycle - 1]):
-                patient.switch_health()
 
-            if not patient.health:
-                self.met.requests_total += 1
+            if determine_health(prob_call):
+                if patient.health is True:
+                    patient.health = False
 
+            if patient.health is False:
+                self.metrics.daily_requests += 1
                 if patient not in self.sick:
                     self.sick.append(patient)
                 if patient in self.healthy:
@@ -221,7 +245,7 @@ class Driver:
 
                 for i in range(0, patient.sched_pref):
                     appt = Appointment(patient=patient, date=(self.curr_day + i),
-                                       time=self.get_first_avail(self.curr_day + i),
+                                       time = self.get_first_avail(self.curr_day + i) if self.curr_day+i <= conf.simulation['scheduling_horizon'] else None,
                                        # this is where our policy comes into play
                                        duration=(15 * random.randint(1, 4)), scheduled_on=self.curr_day)
 
@@ -229,7 +253,7 @@ class Driver:
                     if self.check_appt(appt) and scheduled is not True:
                         self.schedule_appt(appt)
                         scheduled = True
-                        self.met.appts_scheduled += 1
+                        self.metrics.appts_scheduled += 1
                         break
                     else:
                         '''print "Failed to schedule appt for for patient {} on day {} at time {} for {} mins".format(
@@ -244,14 +268,14 @@ class Driver:
                         self.sick.remove(patient)
                     if patient not in self.healthy:
                         self.healthy.append(patient)
-                    self.met.appts_not_scheduled += 1
+                    self.metrics.appts_not_scheduled += 1
 
             else:
                 if patient in self.sick:
                     self.sick.remove(patient)
                 if patient not in self.healthy:
                     self.healthy.append(patient)
-
+        print "Sick = {} Healthy = {}".format(len(self.sick), len(self.healthy))
     '''Scheduling Policies'''
 
     def get_first_avail(self, day):
@@ -261,6 +285,7 @@ class Driver:
         :return: timeslot # of first open
         """
         # go through times in the day
+        day = day - 1
         for slot in self.days[day].schedule:
             # if slot is available, return day and slot
             if slot.appt is None and slot.open is True:
@@ -306,20 +331,20 @@ def determine_health(prob):
         return False
 
 
-def test_conflicts(driver, patients):
+def test_conflicts(fd, patients):
     ''' Schedule first patient's appt '''
     patients[0].appointments.append(Appointment(patient=patients[0], date=1, time=0, duration=30, scheduled_on=1))
-    driver.schedule_appt(patients[0].appointments[0])
+    fd.schedule_appt(patients[0].appointments[0])
 
     ''' Schedule second patient's appt '''
     patients[1].appointments.append(Appointment(patient=patients[1], date=1, time=1, duration=30, scheduled_on=1))
-    driver.schedule_appt(patients[1].appointments[0])
+    fd.schedule_appt(patients[1].appointments[0])
 
 
-def schedule_for_all(driver, patients):
+def schedule_for_all(fd, patients):
     """
     Schedules an appt for all patients that require one
-    :param driver:
+    :param fd:
     :param patients:
     :return:
     """
@@ -329,68 +354,71 @@ def schedule_for_all(driver, patients):
             if len(patient.appointments) > 0:
                 logger.debug("Checking schedule for day {} at {}".format(patient.appointments[0].date,
                                                                          patient.appointments[0].time))
-                if driver.check_appt(patient.appointments[0]):
+                if fd.check_appt(patient.appointments[0]):
                     logger.debug("Scheduling for {}!".format(patient.id))
-                    driver.schedule_appt(patient.appointments[0])
+                    fd.schedule_appt(patient.appointments[0])
                 else:
                     print "Couldn't Schedule"
 
-def run_simulation(length):
-    for i in range(0, length):
 
-        driver.advance_day()
-        appt_ctr = 0
-        for slot in driver.days[driver.curr_day].schedule:
-            if slot.appt is not None:
-                appt_ctr += 1
-        '''print ("\n>>>>>> DAY {} <<<<<<<\n".format(driver.curr_day))
-        print "----- Scheduling Metrics -----"
-        print ">>> Scheduled Total: {}\n>>> Failed to Schedule Total: {}".format(driver.met.appts_scheduled,
-                                                                                 driver.met.appts_not_scheduled)
-        print ">>> Scheduled for Today: {}\n" \
-              ">>> Attended: {}\n>>> Total Calls: {}\n".format(appt_ctr, driver.met.appts_attended,
-                                                               driver.met.requests_total)
+def run_simulation(num_sims):
 
-        print "----- Patient Metrics -----"
-        print ">>> Healthy: {}\n>>> Sick: {}".format(len(driver.healthy), len(driver.sick))'''
+    for j in range(0, num_sims):
+        for i in range(0, conf.simulation['scheduling_horizon']):
+            fd.advance_day()
+            appt_ctr = 0
+            for slot in fd.days[fd.curr_day].schedule:
+                if slot.appt is not None:
+                    appt_ctr += 1
+            '''print ("\n>>>>>> DAY {} <<<<<<<\n".format(fd.curr_day))
+            print "----- Scheduling Metrics -----"
+            print ">>> Scheduled Total: {}\n>>> Failed to Schedule Total: {}".format(fd.metrics.appts_scheduled,
+                                                                                     fd.metrics.appts_not_scheduled)
+            print ">>> Scheduled for Today: {}\n" \
+                  ">>> Attended: {}\n>>> Total Calls: {}\n".format(appt_ctr, fd.metrics.appts_attended,
+                                                                   fd.metrics.requests_total)
+    
+            print "----- Patient Metrics -----"
+            print ">>> Healthy: {}\n>>> Sick: {}".format(len(fd.healthy), len(fd.sick))'''
 
-        driver.met.append_metrics_to_df(i)
+            fd.metrics.append_metrics_to_df(i)
 
+        fd.tracker.append_metrics_to_df(fd.patients)
 
-    driver.tracker.append_metrics_to_df(driver.patients)
-    writer = pd.ExcelWriter("Metrics.xlsx", engine="openpyxl")
-    driver.met.metrics_df.to_excel(writer, "Simulation Data")
-    driver.tracker.metrics_df.to_excel(writer, "Patient Data")
-    writer.save()
+        writer = pd.ExcelWriter("Metrics.xlsx", engine="openpyxl")
+        fd.metrics.metrics_df.to_excel(writer, "Simulation Data")
+        fd.tracker.metrics_df.to_excel(writer, "Patient Data")
+        writer.save()
 
 if __name__ == "__main__":
 
-    driver = Driver(length=180, patients=100)
-    patients = driver.patients
+    fd = FrontDesk(scheduling_horizon=conf.simulation['scheduling_horizon'],
+                    patients=conf.simulation['num_patients'])
+    patients = fd.patients
 
     '''Test scheduling in a blocked timeslot'''
     # new_patient = Patient(101)
     # new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on=curr_day))
     #
-    # assert driver.check_appt(new_patient.appointments[0]) is False
+    # assert fd.check_appt(new_patient.appointments[0]) is False
 
     '''Test scheduling in an open timeslot'''
     # new_patient_2 = Patient(102)
     # new_patient_2.appointments.append(Appointment(new_patient_2, 0, 3, 15, scheduled_on=curr_day))
     #
-    # assert driver.check_appt(new_patient_2.appointments[0]) is True
-    # driver.schedule_appt(new_patient_2.appointments[0])
+    # assert fd.check_appt(new_patient_2.appointments[0]) is True
+    # fd.schedule_appt(new_patient_2.appointments[0])
 
     # schedule should now have changed timeslot #3 to be unavailable
-    # print Day.schedule_to_string(driver.days[curr_day])
+    # print Day.schedule_to_string(fd.days[curr_day])
 
     ''' Tests scheduling for multiple patients '''
-    # schedule_for_all(driver, patients)
+    # schedule_for_all(fd, patients)
 
     ''' Tests conflicting scheduling'''
-    # test_conflicts(driver, patients)
+    # test_conflicts(fd, patients)
 
-    # driver.get_patients_info()
+    # fd.get_patients_info()
 
-    run_simulation(3)
+    run_simulation(num_sims=conf.simulation['num_sims'])
 
