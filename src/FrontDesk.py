@@ -130,7 +130,6 @@ class FrontDesk:
                     if slot.appt.patient.id not in patients_attended:
                         patients_attended.append(slot.appt.patient.id)
                         slot.appt.patient.appts_attended += 1
-                        print "attended"
 
                     slot.appt.patient.appointments.remove(slot.appt)
 
@@ -229,6 +228,7 @@ class FrontDesk:
 
             if determine_health(prob_call):
                 if patient.health is True:
+                    print "Patient {} got sick!".format(patient.id)
                     patient.health = False
 
             if patient.health is False:
