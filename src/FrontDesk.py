@@ -107,16 +107,15 @@ class FrontDesk:
         self.update_patients()
 
     def sim_appts(self):
-        patients_attended = []
+        patients_attended = 0
 
         for slot in self.days[self.curr_day].schedule:
             # if patient is still sick assume they attend
             if slot.appt is not None:
                 if slot.appt.patient in self.sick:
-                    if slot.appt.patient.id not in patients_attended:
-                        slot.appt.attended = True
-
-                        slot.appt.patient.appts_attended += 1
+                    slot.appt.attended = True
+                    slot.appt.patient.appts_attended += 1
+                    patients_attended += 1
 
                     if slot.appt.patient in self.sick:
                         self.sick.remove(slot.appt.patient)
@@ -125,7 +124,7 @@ class FrontDesk:
                 else:
                     slot.appt.attended = False
 
-        self.metrics.appts_attended += len(patients_attended)
+        self.metrics.appts_attended += patients_attended
 
     def get_schedule_by_day(self, day_num):
         """
@@ -200,7 +199,6 @@ class FrontDesk:
         Updates a Patient's time until appt as well as health
         :return:
         """
-
 
         for patient in self.patients:
             if len(patient.appointments) > 0:
