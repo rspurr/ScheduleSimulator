@@ -1,4 +1,4 @@
-import datetime
+
 from FrontDesk import Driver
 
 
@@ -24,7 +24,6 @@ class Appointment(object):
     def __str__(self):
         return "Day {}     |    Time: {}     |     Patient: {}".format(self.date, translate_slot_to_time(self.time), self.patient.id)
 
-
 def translate_slot_to_time(time):
     """
     Translates a standard time i.e. "6:15" and turns it into a timeslot we can use for indexing
@@ -49,4 +48,4 @@ def translate_slot_to_time(time):
     else:
         return "{}:{}".format(hours + 9 if hours + 9 < 13 else ((hours + 9) - 12), mins)
 
-            # add func to translate date into day_num
+        # add func to translate date into day_num

@@ -25,15 +25,16 @@ class Patient(object):
         self.total_appts = 0
         self.appts_attended = 0
 
-
     def switch_health(self):
-        if self.health is True:
+        '''if self.health is True:
             self.health = False
-        self.needs_appt = not self.needs_appt
+        self.needs_appt = not self.needs_appt'''
 
-        if self.health is True and len(self.appointments) is not 0:
-            print("Patient returned to healthy pool before appt!")
+        self.health = False
+
+        '''if self.health is True and len(self.appointments) is not 0:
+            self._log.debug("Patient {} returned to healthy pool before appt!")
             for appt in self.appointments:
-                print appt
+                print appt'''
 
 
