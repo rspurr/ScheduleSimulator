@@ -1,7 +1,7 @@
-simulation = dict(scheduling_horizon = 180,
-                  num_patients = 100,
-                  policy = "get_first_avail",
-                  num_sims = 1
+simulation = dict(scheduling_horizon=180,
+                  num_patients=100,
+                  policy="get_first_avail",
+                  num_sims=1
                   )
 
 release_schedule = {

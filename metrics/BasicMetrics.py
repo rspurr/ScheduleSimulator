@@ -57,5 +57,27 @@ class PatientMetrics:
             self.metrics_df.loc[patient.id] = data
 
 
+class ApptMetrics:
+
+    def __init__(self):
+
+        self.indicies = ["Sched On",
+                         "Sched For",
+                         "Length",
+                         "Attended?"]
+
+        self.metrics_df = pd.DataFrame(columns=self.indicies)
+        pd.set_option("max_colwidth", 50)
 
 
+    def append_metrics_to_df(self, appts):
+
+        appt_ctr = 1
+        for appt in appts:
+            data = pd.Series({self.indicies[0]: appt.scheduled_date,
+                              self.indicies[1]: appt.date,
+                              self.indicies[2]: appt.duration,
+                              self.indicies[3]: appt.attended})
+
+            self.metrics_df.loc[appt_ctr]= data
+            appt_ctr += 1
