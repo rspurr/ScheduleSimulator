@@ -7,13 +7,15 @@ class BasicMetrics:
     def __init__(self):
         self.appts_scheduled = 0
         self.appts_not_scheduled = 0
-        self.requests_total = 0
+        self.daily_requests = 0
         self.appts_attended = 0
+        self.sick_to_healthy_ratio = 0.0
 
         self.indicies = ["Appts Scheduled",
                     "Appts Not Scheduled",
-                    "Total Appt Requests",
-                    "Appts. Attended"]
+                    "Appt Requests",
+                    "Appts. Attended",
+                    "Sick/Healthy Ratio"]
 
         self.metrics_df = pd.DataFrame(columns=self.indicies)
         pd.set_option("max_colwidth", 50)
@@ -21,9 +23,16 @@ class BasicMetrics:
     def append_metrics_to_df(self, day):
 
         data = [self.appts_scheduled, self.appts_not_scheduled,
-                self.requests_total, self.appts_attended]
+                self.daily_requests, self.appts_attended,
+                self.sick_to_healthy_ratio]
 
         self.metrics_df.loc[day] = data
+
+    def reset_daily_values(self):
+        self.appts_scheduled = 0
+        self.appts_not_scheduled = 0
+        self.appts_attended = 0
+        self.daily_requests = 0
 
 
 class PatientMetrics:

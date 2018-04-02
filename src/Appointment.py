@@ -1,4 +1,4 @@
-
+import datetime
 from FrontDesk import Driver
 
 
@@ -21,8 +21,10 @@ class Appointment(object):
         self.days_since_request = 0
         self.duration = duration
 
+
     def __str__(self):
         return "Day {}     |    Time: {}     |     Patient: {}".format(self.date, translate_slot_to_time(self.time), self.patient.id)
+
 
 def translate_slot_to_time(time):
     """
