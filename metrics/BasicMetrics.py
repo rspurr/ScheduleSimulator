@@ -18,7 +18,7 @@ class BasicMetrics:
         self.metrics_df = pd.DataFrame(columns=self.indicies)
         pd.set_option("max_colwidth", 50)
 
-    def append_metrics_to_df(self, day):
+    def append_to_df(self, day):
 
         data = [self.appts_scheduled, self.appts_not_scheduled,
                 self.daily_requests, self.appts_attended]
@@ -43,7 +43,7 @@ class PatientMetrics:
         self.metrics_df = pd.DataFrame(columns=self.indicies)
         pd.set_option("max_colwidth", 50)
 
-    def append_metrics_to_df(self, patients):
+    def append_to_df(self, patients):
         ids = []
         for i in range(len(patients)):
             ids.append(i)
@@ -66,8 +66,7 @@ class ApptMetrics:
         self.metrics_df = pd.DataFrame(columns=self.indicies)
         pd.set_option("max_colwidth", 50)
 
-
-    def append_metrics_to_df(self, appts):
+    def append_to_df(self, appts):
 
         appt_ctr = 1
         for appt in appts:
@@ -76,5 +75,5 @@ class ApptMetrics:
                               self.indicies[2]: appt.duration,
                               self.indicies[3]: appt.attended})
 
-            self.metrics_df.loc[appt_ctr]= data
+            self.metrics_df.loc[appt_ctr] = data
             appt_ctr += 1

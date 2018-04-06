@@ -5,9 +5,9 @@ simulation = dict(scheduling_horizon=180,
                   )
 
 release_schedule = {
-                    1: .1,
-                    3: .2,
-                    7: .3,
-                    14: .2,
-                    28: .2
+                    1: .4,
+                    3: .25,
+                    7: .15,
+                    14: .1,
+                    28: .1
                     }

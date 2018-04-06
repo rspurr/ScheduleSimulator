@@ -37,4 +37,8 @@ class Patient(object):
             for appt in self.appointments:
                 print appt'''
 
+class PatientStateMachine():
 
+    def __init__(self):
+        self.patients = []
+        self.states = ["sick_need_appt", "sick_w_appt", "healthy", "healthy_w_appt"]
