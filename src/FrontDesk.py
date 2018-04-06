@@ -26,7 +26,7 @@ class FrontDesk:
         Initializes the schedule and begins simulation of scheduling
     """
 
-    def __init__(self, scheduling_horizon, patients):
+    def __init__(self, config):
         self._log = logger
 
         # create list of days , each with their own schedule
@@ -35,34 +35,34 @@ class FrontDesk:
         self.day_cycle = 0
         self.day_cycle_ctr = 0
 
-        for i in range(0, scheduling_horizon + 1):
+        self.conf = config[0]
+
+        # create days with their corresponding cycle day (day in the week)
+        for i in range(0, self.conf['scheduling_horizon'] + 1):
             self.day_cycle_ctr += 1
             if self.day_cycle_ctr % 7 == 0:
                 self.day_cycle_ctr = 1
             self.days.append(Day(i, self.day_cycle_ctr))
-
+        # reset cycle day counter
         self.day_cycle_ctr = 0
 
-        self._log.info("Master Schedule initialized!")
-
         # initialize the patients
-        self.patients = self.create_patients(patients)
+        self.patients = self.create_patients(num=self.conf['num_patients'])
 
         # separate healthy and sick patients
         self.healthy = []
         self.sick = []
+        # keep track of scheduled appointments for metrics
+        self.scheduled_appts = []
 
-        self.release_schedule = conf.release_schedule
+        self.release_schedule = config[1]
 
         ''' calculate probabilities of a call from a sick patient depending
             on day of week '''
 
         calls_per_day = [191.4, 166.25, 120, 126.5, 98, 65.6]
         sum_calls = sum(calls_per_day)
-
         self.chance_of_call = list(map(lambda x: x / sum_calls, calls_per_day))
-
-        self.scheduled_appts = []
 
         self.metrics = BasicMetrics()
         self.tracker = PatientMetrics()
@@ -223,7 +223,7 @@ class FrontDesk:
 
                 # loop through patient's schedule preferences and attempt to satisfy one
 
-                policy = getattr(fd, conf.simulation['policy'])
+                policy = getattr(fd, self.conf['policy'])
 
                 for i in range(0, patient.sched_pref):
                     appt = Appointment(patient=patient,
@@ -378,7 +378,7 @@ def print_metrics(fd):
     print ">>> Healthy: {}\n>>> Sick: {}".format(len(fd.healthy), len(fd.sick))
 
 
-def run_simulation(length):
+def run_simulation(length, sim_num):
     for i in range(0, length):
         # simulate day and display metrics
         fd.advance_day()
@@ -392,7 +392,7 @@ def run_simulation(length):
     fd.tracker.append_to_df(fd.patients)
     fd.appt_tracker.append_to_df(fd.scheduled_appts)
 
-    writer = pd.ExcelWriter("Metrics.xlsx", engine="openpyxl")
+    writer = pd.ExcelWriter("Metrics_Run_{}.xlsx".format(sim_num), engine="openpyxl")
     fd.metrics.metrics_df.to_excel(writer, "Simulation Data")
     fd.tracker.metrics_df.to_excel(writer, "Patient Data")
     fd.appt_tracker.metrics_df.to_excel(writer, "Appointment Data")
@@ -401,8 +401,9 @@ def run_simulation(length):
 
 if __name__ == "__main__":
 
-    conf.get_conf(0)
-    fd = FrontDesk(scheduling_horizon=conf.simulation['scheduling_horizon'], patients=conf.simulation['num_patients'])
-    patients = fd.patients
-
-    run_simulation(1)
+    configs = conf.get_configs()
+    for i in range(len(configs)):
+        fd = FrontDesk(config=configs[i])
+        patients = fd.patients
+        print configs[i]
+        run_simulation(1, i)
