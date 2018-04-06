@@ -1,13 +1,23 @@
-simulation = dict(scheduling_horizon=180,
-                  num_patients=100,
-                  policy="get_first_avail",
-                  num_sims=1
-                  )
+import pandas as pd
 
-release_schedule = {
-                    1: .4,
-                    3: .25,
-                    7: .15,
-                    14: .1,
-                    28: .1
+def get_conf(num):
+    df = pd.read_excel("../SchedSimConfig.xlsx", sheet_name="conf")
+
+    simulation = dict(scheduling_horizon=df.SchedHorizon[num],
+                      num_patients=df.Patients[num],
+                      policy=str(df.Policy[num]),
+                      num_sims=df.Sims[num])
+
+    rel_schedule = {
+                    1: df.PctRel1[num],
+                    3: df.PctRel3[num],
+                    7: df.PctRel7[num],
+                    14: df.PctRel14[num],
+                    28: df.PctRel28[num]
                     }
+
+    return simulation, rel_schedule
+
+
+simulation , release_schedule = get_conf(0)
+

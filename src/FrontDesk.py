@@ -400,39 +400,9 @@ def run_simulation(length):
 
 
 if __name__ == "__main__":
+
+    conf.get_conf(0)
     fd = FrontDesk(scheduling_horizon=conf.simulation['scheduling_horizon'], patients=conf.simulation['num_patients'])
     patients = fd.patients
 
-    '''Test scheduling in a blocked timeslot
-    new_patient = Patient(101)
-    new_patient.appointments.append(Appointment(new_patient, 0, 8, 15, scheduled_on=curr_day))
-    
-    assert fd.check_appt(new_patient.appointments[0]) is False'''
-
-    # curr_day = 1
-    #
-    # new_patient_2 = Patient(102)
-    # appt = Appointment(patient=new_patient_2,
-    #                    date=1,
-    #                    time=2,
-    #                    duration=30,
-    #                    scheduled_on=curr_day)
-    # new_patient_2.appointments.append(appt)
-    #
-    # assert fd.check_appt(new_patient_2.appointments[0]) is True
-    # fd.schedule_appt(new_patient_2.appointments[0])
-    #
-    # print Day.schedule_to_string(fd.days[curr_day])
-    #
-    #
-    # print Day.schedule_to_string(fd.days[curr_day])
-
-    ''' Tests scheduling for multiple patients '''
-    # schedule_for_all(fd, patients)
-
-    ''' Tests conflicting scheduling'''
-    # test_conflicts(fd, patients)
-
-    # fd.get_patients_info()
-
-    run_simulation(50)
+    run_simulation(1)
