@@ -49,10 +49,6 @@ class Day(object):
         elif self.day_in_cycle == 6:
             return "Sat"
 
-    # event handling
-
-    #
-
     def get_first_closed_slot(self):
         for slot in self.schedule:
             if slot.open is False and slot.appt is None:

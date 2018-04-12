@@ -18,7 +18,7 @@ class Appointment(object):
         self.scheduled_date = scheduled_on
         self.days_since_request = 0
         self.duration = duration
-        self.attended = None
+        self.attended = False
 
 
     def __str__(self):

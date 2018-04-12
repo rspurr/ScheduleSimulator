@@ -1,5 +1,5 @@
 import random
-from metrics.BasicMetrics import PatientMetrics
+
 
 class Patient(object):
     """
@@ -16,7 +16,6 @@ class Patient(object):
 
         self.health = True
         self.needs_appt = False
-        self.chance_of_sickness = 0.2
 
         self.sched_pref = random.randint(0, 28)
         self.appointments = []
@@ -25,20 +24,18 @@ class Patient(object):
         self.total_appts = 0
         self.appts_attended = 0
 
+        self.state = "healthy"
+
     def switch_health(self):
-        '''if self.health is True:
+        if self.health is True:
             self.health = False
-        self.needs_appt = not self.needs_appt'''
+        self.needs_appt = True
 
-        self.health = False
+        self.state = "sick_needs_appt"
 
-        '''if self.health is True and len(self.appointments) is not 0:
-            self._log.debug("Patient {} returned to healthy pool before appt!")
-            for appt in self.appointments:
-                print appt'''
 
-class PatientStateMachine():
+class PatientStateMachine:
 
     def __init__(self):
         self.patients = []
-        self.states = ["sick_need_appt", "sick_w_appt", "healthy", "healthy_w_appt"]
+        self.states = ["no_appt", "sick_need_appt", "sick_w_appt", "healthy", "healthy_w_appt"]

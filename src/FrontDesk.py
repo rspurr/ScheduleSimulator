@@ -83,14 +83,18 @@ class FrontDesk:
 
         # release slots in specified day range
         for day in [1, 3, 7, 14, 28]:
-            release_day = self.days[self.curr_day + day]
 
-            first_closed = release_day.get_first_closed_slot()
-            fc_index = release_day.schedule.index(first_closed)
-            for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * 32) - 1):
-                if release_day.day_num < len(self.days) - 1:
-                    self._log.info("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[i]))
-                    release_day.schedule[i].open = True
+            if self.curr_day + day < len(self.days):
+
+                release_day = self.days[self.curr_day + day]
+
+                first_closed = release_day.get_first_closed_slot()
+                fc_index = release_day.schedule.index(first_closed)
+                for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * 32) - 1):
+                    if release_day.day_num < len(self.days) - 1:
+                        self._log.info("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[i]))
+                        release_day.schedule[i].open = True
+
 
         # update fd status vals
         self.curr_day += 1
@@ -106,21 +110,25 @@ class FrontDesk:
 
     def sim_appts(self):
 
-        for slot in self.days[self.curr_day].schedule:
-            # if patient is still sick assume they attend
+        last_patient = -1   # don't want to double count appts attended, so keep track of last patient attended
+
+        for slot in self.get_schedule_by_day(self.curr_day):
             if slot.appt is not None:
-                if slot.appt.patient.health is False:
+                if slot.appt.patient.health is False and last_patient != slot.appt.patient.id:
+                    self._log.debug("Patient {} attended {}".format(slot.appt.patient.id, slot.appt))
+                    self.metrics.appts_attended += 1
                     slot.appt.attended = True
                     slot.appt.patient.appts_attended += 1
-                    slot.appt.patient.health = True
-                    self.metrics.appts_attended += 1
 
-                    # TODO: make change pool method
+                    if self.prob_follow_up(slot.appt.patient.sched_pref) > random.random():   # TODO: !!! fix
+                        slot.appt.patient.health = True
+                        slot.appt.patient.needs_appt = False
+                        slot.appt.patient.state = "healthy"
+                    else:
+                        slot.appt.patient.state = "sick_needs_follow"
+                        slot.appt.patient.needs_appt = True
 
-                    if slot.appt.patient in self.sick:
-                        self.sick.remove(slot.appt.patient)
-                    if slot.appt.patient not in self.healthy:
-                        self.healthy.append(slot.appt.patient)
+                    last_patient = slot.appt.patient.id
                 else:
                     slot.appt.attended = False
 
@@ -132,6 +140,7 @@ class FrontDesk:
         :return: the schedule of the day specified
 
         """
+
         return self.days[day_num].schedule
 
     def schedule_appt(self, appt):
@@ -160,6 +169,9 @@ class FrontDesk:
             appt.patient.appointments.append(appt)
             appt.patient.days_until_appt = appt.date - self.curr_day
             appt.patient.total_appts += 1
+            appt.patient.state = "has_appt"
+
+            # update metrics
             self.scheduled_appts.append(appt)
             self.metrics.appts_scheduled += 1
             return True
@@ -201,16 +213,21 @@ class FrontDesk:
         """
 
         for patient in self.patients:
+
             if len(patient.appointments) > 0:
                 for appt in patient.appointments:
-                    appt.days_since_request += 1
+                    if appt.attended is False:
+                        appt.days_since_request += 1
+                        # if probability that person cancels is met, cancel the appointment
+                        if self.prob_utilized(appt) < random.random():  # TODO: Review logic behind cancellations
+                            self.cancel_appt(appt)
 
             # flip health if random chance of sickness is satisfied
             # day in cycle determines chance of the person calling
             if determine_health(self.chance_of_call[self.days[self.curr_day].day_in_cycle - 1]):
                 patient.switch_health()
 
-            if patient.health is False:
+            if patient.health is False and patient.state in ['sick_needs_appt', 'sick_needs_follow']:
                 self.metrics.daily_requests += 1
 
                 if patient not in self.sick:
@@ -218,29 +235,26 @@ class FrontDesk:
                 if patient in self.healthy:
                     self.healthy.remove(patient)
 
-                scheduled = False
-                appt = None
-
                 # loop through patient's schedule preferences and attempt to satisfy one
-
+                scheduled = False
                 policy = getattr(fd, self.conf['policy'])
 
                 for i in range(0, patient.sched_pref):
-                    appt = Appointment(patient=patient,
-                                       date=(self.curr_day + i),
-                                       time=policy(self.curr_day + i),
-                                       # this is where our policy comes into play
-                                       duration=(15 * random.randint(1, 4)), scheduled_on=self.curr_day)
+                    if scheduled is False:
+                        appt = Appointment(patient=patient,
+                                           date=(self.curr_day + i),
+                                           time=policy(self.curr_day + i if self.curr_day + i < len(self.days) else -1),
+                                           # this is where our policy comes into play
+                                           duration=(15 * random.randint(1, 4)), scheduled_on=self.curr_day)
 
-                    # schedule the appointment they want if we can
-                    if self.check_appt(appt) and scheduled is not True:
-                        self.schedule_appt(appt)
-                        scheduled = True
-
-                        break
+                        # schedule the appointment they want if we can
+                        if self.check_appt(appt) and scheduled is False:
+                            self.schedule_appt(appt)
+                            scheduled = True
+                            patient.state = "sick_w_appt"
 
                 # patient is lost
-                if scheduled is not True:
+                if scheduled is False:
 
                     self._log.info("Failed to schedule appt for for patient {}".format(patient.id))
 
@@ -279,6 +293,14 @@ class FrontDesk:
 
         return y
 
+    def prob_follow_up(self, t):
+        A = 0.57013
+        a = 0.0273
+
+        p = A*(1-math.pow(math.e, -a*t))
+
+        return p
+
     '''Scheduling Policies'''
 
     def get_first_avail(self, day):
@@ -288,11 +310,14 @@ class FrontDesk:
         :return: timeslot # of first open
         """
         # go through times in the day
+        if day == -1:
+            return -1
         for slot in self.days[day].schedule:
             # if slot is available, return slot time
             if slot.appt is None and slot.open is True:
                 return slot.time
         return -1
+
 
     '''Helper Functions'''
 
@@ -361,6 +386,7 @@ def schedule_for_all(fd, patients):
                 if fd.check_appt(patient.appointments[0]):
                     logger.debug("Scheduling for {}!".format(patient.id))
                     fd.schedule_appt(patient.appointments[0])
+                    patient.needs_appt = False
                 else:
                     print "Couldn't Schedule"
 
@@ -379,23 +405,48 @@ def print_metrics(fd):
 
 
 def run_simulation(length, sim_num):
-    for i in range(0, length):
-        # simulate day and display metrics
+    for day in range(0, length):
+        # simulate day and append metrics to df
         fd.advance_day()
         appt_ctr = 0
         for slot in fd.days[fd.curr_day].schedule:
             if slot.appt is not None:
                 appt_ctr += 1
 
-        fd.metrics.append_to_df(i)
+        fd.metrics.append_to_df(day)
 
     fd.tracker.append_to_df(fd.patients)
     fd.appt_tracker.append_to_df(fd.scheduled_appts)
 
-    writer = pd.ExcelWriter("Metrics_Run_{}.xlsx".format(sim_num), engine="openpyxl")
+    writer = pd.ExcelWriter("Metrics_Run_{}.xlsx".format(sim_num), engine="xlsxwriter")
     fd.metrics.metrics_df.to_excel(writer, "Simulation Data")
     fd.tracker.metrics_df.to_excel(writer, "Patient Data")
     fd.appt_tracker.metrics_df.to_excel(writer, "Appointment Data")
+
+    sim_fd = fd.metrics.metrics_df[['Appts Scheduled','Appts. Attended']].copy()
+
+    sim_fd.to_excel(writer, sheet_name="Test")
+
+    wb = writer.book
+    ws = writer.sheets["Test"]
+
+    chart = wb.add_chart({'type': 'line'})
+
+    max_row = 180
+
+    for i in range(2):
+        col = i + 1
+        chart.add_series({
+            'name': ["Test", 0, col],
+            'categories': ["Test", 1, 0, max_row, 0],
+            'values': ["Test", 1, col, max_row, col],
+        })
+
+    chart.set_x_axis({'name': 'Days'})
+    chart.set_y_axis({'name': 'Appointments', 'major_gridlines': {'visible': True}})
+
+    ws.insert_chart("G2", chart)
+
     writer.save()
 
 
@@ -406,4 +457,4 @@ if __name__ == "__main__":
         fd = FrontDesk(config=configs[i])
         patients = fd.patients
         print configs[i]
-        run_simulation(1, i)
+        run_simulation(fd.conf['scheduling_horizon'], i)
