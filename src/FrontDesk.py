@@ -5,7 +5,7 @@ import pandas as pd
 from Patient import Patient
 from Day import *
 from Appointment import *
-from metrics.BasicMetrics import BasicMetrics, PatientMetrics, ApptMetrics
+from metrics.Metrics import BasicMetrics, PatientMetrics, ApptMetrics
 import config as conf
 
 logger = logging.getLogger(__name__)
@@ -131,6 +131,7 @@ class FrontDesk:
                     last_patient = slot.appt.patient.id
                 else:
                     slot.appt.attended = False
+                    slot.appt.patient.needs_appt = False
 
     def get_schedule_by_day(self, day_num):
         """
@@ -271,6 +272,11 @@ class FrontDesk:
                     self.healthy.append(patient)
 
     def cancel_appt(self, appt):
+        """
+        Cancels the appointment provided as an argument
+        :param appt: the appointment to cancel
+        :return:
+        """
         schedule = fd.get_schedule_by_day(appt.date)
         duration = appt.duration / 15
         appt_end = appt.time + duration
@@ -279,7 +285,7 @@ class FrontDesk:
             schedule[i].appt = None
             schedule[i].open = True
 
-        print "[+] Appt cancelled."
+        self._log.debug("[+] {} cancelled.".format(appt))
 
     def prob_utilized(self, appt):
         b_0 = 0.51517
@@ -377,7 +383,7 @@ def schedule_for_all(fd, patients):
     """
 
     for patient in patients:
-        if patient.needs_appt:
+        if patient.state in ['sick_needs_appt', 'sick_needs_follow']:
             if len(patient.appointments) > 0:
                 logger.debug("Checking schedule for day {} at {}".format(patient.appointments[0].date,
                                                                          patient.appointments[0].translate_appt_to_time(

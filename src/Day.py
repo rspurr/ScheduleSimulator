@@ -55,6 +55,7 @@ class Day(object):
                 return slot
         return -1
 
+
 class Timeslot(object):
     """
     Timeslot object #TODO doc this
