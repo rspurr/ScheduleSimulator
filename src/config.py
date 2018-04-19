@@ -9,7 +9,8 @@ def get_configs():
         simulation = dict(scheduling_horizon=df.SchedHorizon[num],
                           num_patients=df.Patients[num],
                           policy=str(df.Policy[num]),
-                          num_sims=df.Sims[num])
+                          num_sims=df.Sims[num],
+                          days_in_cycle=df.DaysInCycle[num])
 
         rel_schedule = {
                         1: df.PctRel1[num],

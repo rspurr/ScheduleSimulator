@@ -33,6 +33,8 @@ class Patient(object):
 
         self.state = "sick_needs_appt"
 
+    def __str__(self):
+        return "{} : {}".format(self.id, self.state)
 
 class PatientStateMachine:
 

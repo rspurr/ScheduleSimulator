@@ -19,10 +19,10 @@ class Appointment(object):
         self.days_since_request = 0
         self.duration = duration
         self.attended = False
-
+        self.will_cancel = False
 
     def __str__(self):
-        return "Day {}     |    Time: {}     |     Patient: {}".format(self.date, translate_slot_to_time(self.time), self.patient.id)
+        return "Patient: {} - Day {} @ {}".format( self.patient, self.date, translate_slot_to_time(self.time))
 
 
 def translate_slot_to_time(time):
