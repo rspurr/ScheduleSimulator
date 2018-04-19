@@ -156,6 +156,7 @@ class FrontDesk:
             if prob_utilized(appt) <= random.random():
                 appt.will_cancel = True
                 self._log.debug("{} will not be utilized.".format(appt))
+                self.metrics.appts_not_utilized += 1
 
             return True
         else:
@@ -178,6 +179,9 @@ class FrontDesk:
             schedule[i].open = True
 
         self._log.debug("Cancelled {}".format(appt))
+
+        appt.patient.appointments.remove(appt)
+        self.metrics.appts_cancelled += 1
 
     def simulate_appointments(self):
 
@@ -349,7 +353,9 @@ class FrontDesk:
         if patient not in self.healthy:
             self.healthy.append(patient)
 
+
 ''' outside helper functions '''
+
 
 def determine_health(prob):
     """
@@ -430,6 +436,32 @@ def prob_follow_up(t):
 
     return p
 
+
+def make_graphs(fd, writer):
+    sim_fd = fd.metrics.metrics_df[['Appts Scheduled', 'Appts. Attended']].copy()
+
+    sim_fd.to_excel(writer, sheet_name="Test")
+
+    wb = writer.book
+    ws = writer.sheets["Test"]
+
+    chart = wb.add_chart({'type': 'line'})
+
+    max_row = fd.conf['scheduling_horizon']
+
+    for i in range(2):
+        col = i + 1
+        chart.add_series({
+            'name': ["Test", 0, col],
+            'categories': ["Test", 1, 0, max_row, 0],
+            'values': ["Test", 1, col, max_row, col],
+        })
+
+    chart.set_x_axis({'name': 'Days'})
+    chart.set_y_axis({'name': 'Appointments', 'major_gridlines': {'visible': True}})
+
+    ws.insert_chart("G2", chart)
+
 def run_simulation(length, sim_num):
     for day in range(0, length):
         # simulate day and append metrics to df
@@ -449,29 +481,7 @@ def run_simulation(length, sim_num):
     fd.tracker.metrics_df.to_excel(writer, "Patient Data")
     fd.appt_tracker.metrics_df.to_excel(writer, "Appointment Data")
 
-    sim_fd = fd.metrics.metrics_df[['Appts Scheduled','Appts. Attended']].copy()
-
-    sim_fd.to_excel(writer, sheet_name="Test")
-
-    wb = writer.book
-    ws = writer.sheets["Test"]
-
-    chart = wb.add_chart({'type': 'line'})
-
-    max_row = 180
-
-    for i in range(2):
-        col = i + 1
-        chart.add_series({
-            'name': ["Test", 0, col],
-            'categories': ["Test", 1, 0, max_row, 0],
-            'values': ["Test", 1, col, max_row, col],
-        })
-
-    chart.set_x_axis({'name': 'Days'})
-    chart.set_y_axis({'name': 'Appointments', 'major_gridlines': {'visible': True}})
-
-    ws.insert_chart("G2", chart)
+    make_graphs(fd, writer)
 
     writer.save()
 
