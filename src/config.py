@@ -10,7 +10,9 @@ def get_configs():
                           num_patients=df.Patients[num],
                           policy=str(df.Policy[num]),
                           num_sims=df.Sims[num],
-                          days_in_cycle=df.DaysInCycle[num])
+                          days_in_cycle=df.DaysInCycle[num],
+                          follow_up_buffer=df.FollowUpBuffer[num],
+                          prob_follow_up=df.FollowUpProb[num])
 
         rel_schedule = {
                         1: df.PctRel1[num],

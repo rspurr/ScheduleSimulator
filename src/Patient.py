@@ -21,6 +21,7 @@ class Patient(object):
         self.appointments = []
 
         self.days_until_appt = 0
+        self.days_since_last_appt = 0
         self.total_appts = 0
         self.appts_attended = 0
 
@@ -36,8 +37,3 @@ class Patient(object):
     def __str__(self):
         return "{} : {}".format(self.id, self.state)
 
-class PatientStateMachine:
-
-    def __init__(self):
-        self.patients = []
-        self.states = ["no_appt", "sick_need_appt", "sick_w_appt", "healthy", "healthy_w_appt"]

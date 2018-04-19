@@ -30,6 +30,8 @@ class FrontDesk:
         self.day_cycle = 0
         self.day_cycle_ctr = 0
         self.days_in_cycle = self.conf['days_in_cycle']
+        self.follow_up_buffer = self.conf['follow_up_buffer']
+        self.prob_follow_up = self.conf['prob_follow_up']
 
         # create days with their corresponding cycle day (day in the week)
         self.initialize_days()
@@ -152,7 +154,7 @@ class FrontDesk:
             self.scheduled_appts.append(appt)
             self.metrics.appts_scheduled += 1
 
-            # determine if cancelling
+            # determine if appointment won't be utilized
             if prob_utilized(appt) <= random.random():
                 appt.will_cancel = True
                 self._log.debug("{} will not be utilized.".format(appt))
@@ -190,13 +192,18 @@ class FrontDesk:
         for slot in self.get_schedule_by_day(self.curr_day):
             if slot.appt is not None:
                 if slot.appt.patient.state == "sick_w_appt" and last_patient != slot.appt.patient.id \
-                        and slot.appt.will_cancel is False:
+                        and slot.appt.will_cancel is False and random.random() > 0.122:  # prob of no show
+
+                    # update metrics
 
                     self.metrics.appts_attended += 1
                     slot.appt.attended = True
                     slot.appt.patient.appts_attended += 1
+                    slot.appt.patient.days_since_last_appt = 0
 
-                    if prob_follow_up(slot.appt.patient.sched_pref) > random.random():   # TODO: !!! fix
+                    # determine if follow up is needed
+
+                    if self.prob_follow_up > random.random():   # TODO: !!! fix
                         slot.appt.patient.health = True
                         slot.appt.patient.needs_appt = False
                         slot.appt.patient.state = "healthy"
@@ -208,16 +215,23 @@ class FrontDesk:
                     self._log.debug("ATTENDED: {}".format(slot.appt))
 
                     # clean up patient records
-                    slot.appt.patient.appointments.remove(slot.appt)
+                    if slot.appt in slot.appt.patient.appointments:
+                        slot.appt.patient.appointments.remove(slot.appt)
                 else:
                     if last_patient != slot.appt.patient.id:
                         slot.appt.attended = False
                         slot.appt.patient.needs_appt = False
                         slot.appt.patient.state = "healthy"
+
+                        if slot.appt.will_cancel is True:
+                            self._log.debug("NOT ATTENDED: {}".format(slot.appt))
+                        else:
+                            self._log.debug("NO-SHOW: {}".format(slot.appt))
+
                         if slot.appt in slot.appt.patient.appointments:
                             slot.appt.patient.appointments.remove(slot.appt)
                         last_patient = slot.appt.patient.id
-                        self._log.debug("NOT ATTENDED: {}".format(slot.appt))
+
 
     def update_patients(self):
         """
@@ -234,44 +248,51 @@ class FrontDesk:
                     if appt.will_cancel is True:
                         if random.random() < 0.16:   # TODO: Get solid # for this, num based on approx from data
                             self.cancel_appt(appt)
+            else:
+                patient.days_since_last_appt += 1
 
             # flip health if random chance of sickness is satisfied
             # day in cycle determines chance of the person calling
             if determine_health(self.chance_of_call[self.days[self.curr_day].day_in_cycle]):
                 patient.switch_health()
 
+            # if patient is sick and can request their next appointment, schedule it
+
             if patient.health is False and patient.state in ['sick_needs_appt', 'sick_needs_follow']:
-                self.metrics.daily_requests += 1
+                if patient.state == "sick_needs_follow" and patient.days_since_last_appt < self.follow_up_buffer:
+                    continue
+                else:
+                    self.metrics.daily_requests += 1
 
-                self.healthy_to_sick_pool(patient=patient)
+                    self.healthy_to_sick_pool(patient=patient)
 
-                # loop through patient's schedule preferences and attempt to satisfy one
-                scheduled = False
-                policy = getattr(fd, self.conf['policy'])
+                    # loop through patient's schedule preferences and attempt to satisfy one
+                    scheduled = False
+                    policy = getattr(fd, self.conf['policy'])
 
-                for i in range(0, patient.sched_pref):
+                    for i in range(0, patient.sched_pref):
+                        if scheduled is False:
+                            appt = Appointment(patient=patient,
+                                               date=(self.curr_day + i),
+                                               time=policy(self.curr_day + i if self.curr_day + i < len(self.days) else -1),
+                                               duration=(15 * random.randint(1, 4)),
+                                               scheduled_on=self.curr_day)
+
+                            # schedule the appointment they want if we can
+                            if self.check_appt(appt) and scheduled is False:
+                                self.schedule_appt(appt)
+                                scheduled = True
+                                patient.state = "sick_w_appt"
+
+                    # patient is lost
                     if scheduled is False:
-                        appt = Appointment(patient=patient,
-                                           date=(self.curr_day + i),
-                                           time=policy(self.curr_day + i if self.curr_day + i < len(self.days) else -1),
-                                           duration=(15 * random.randint(1, 4)),
-                                           scheduled_on=self.curr_day)
+                        self.sick_to_healthy_pool(patient=patient)
+                        patient.needs_appt = False
+                        patient.health = True
+                        patient.state = "healthy"
 
-                        # schedule the appointment they want if we can
-                        if self.check_appt(appt) and scheduled is False:
-                            self.schedule_appt(appt)
-                            scheduled = True
-                            patient.state = "sick_w_appt"
-
-                # patient is lost
-                if scheduled is False:
-                    self.sick_to_healthy_pool(patient=patient)
-                    patient.needs_appt = False
-                    patient.health = True
-                    patient.state = "healthy"
-
-                    self._log.debug("SCHED FAILED: {}".format(patient))
-                    self.metrics.appts_not_scheduled += 1
+                        self._log.debug("SCHED FAILED: {}".format(patient))
+                        self.metrics.appts_not_scheduled += 1
 
             else:
                 self.sick_to_healthy_pool(patient=patient)

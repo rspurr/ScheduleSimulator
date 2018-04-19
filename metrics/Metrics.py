@@ -11,16 +11,15 @@ class BasicMetrics:
         self.appts_not_utilized = 0
         self.appts_cancelled = 0
 
-        self.indicies = ["Appts Scheduled", "Appts Not Scheduled", "Appt Requests",
+        self.indicies = [ "Appt Requests", "Appts Scheduled", "Appts Not Scheduled",
                          "Appts. Attended", "Appts. Not Utilized", "Appts. Cancelled"]
 
         self.metrics_df = pd.DataFrame(columns=self.indicies)
         pd.set_option("max_colwidth", 50)
 
     def append_to_df(self, day):
-        data = [self.appts_scheduled, self.appts_not_scheduled,
-                self.daily_requests, self.appts_attended,
-                self.appts_not_utilized, self.appts_cancelled]
+        data = [self.daily_requests, self.appts_scheduled, self.appts_not_scheduled,
+                self.appts_attended, self.appts_not_utilized, self.appts_cancelled]
 
         self.metrics_df.loc[day] = data
 
