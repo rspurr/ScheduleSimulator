@@ -12,7 +12,8 @@ def get_configs():
                           num_sims=df.Sims[num],
                           days_in_cycle=df.DaysInCycle[num],
                           follow_up_buffer=df.FollowUpBuffer[num],
-                          prob_follow_up=df.FollowUpProb[num])
+                          prob_follow_up=df.FollowUpProb[num],
+                          slots_per_day= df.SlotsPerDay[num])
 
         rel_schedule = {
                         1: df.PctRel1[num],

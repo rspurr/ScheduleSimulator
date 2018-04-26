@@ -66,7 +66,9 @@ class FrontDesk:
         for i in range(0, self.conf['scheduling_horizon'] + 1):
             if self.day_cycle_ctr % self.days_in_cycle == 0:
                 self.day_cycle_ctr = 0
-            self.days.append(Day(i, self.day_cycle_ctr))
+            self.days.append(Day(i, self.day_cycle_ctr, self.conf['slots_per_day'],
+                                 init_release=0.3 if self.day_cycle_ctr is 0 else 0.2)) #TODO: Make Configurable
+            self.day_cycle_ctr += 1
         # reset cycle day counter
         self.day_cycle_ctr = 0
 
@@ -79,11 +81,16 @@ class FrontDesk:
 
         self._log.info("Day: {} {}".format(self.curr_day, self.days[self.curr_day].day_in_cycle))
 
+        for slot in self.days[self.curr_day].schedule:
+            self._log.info(slot)
+
+        self.release_slots_by_day()
+
         self.simulate_appointments()
 
         # release slots in specified day range
 
-        self.release_slots()
+        # self.release_slots_by_increments()
 
         # update fd status vals
         self.curr_day += 1
@@ -232,7 +239,6 @@ class FrontDesk:
                             slot.appt.patient.appointments.remove(slot.appt)
                         last_patient = slot.appt.patient.id
 
-
     def update_patients(self):
         """
         Updates a Patient's time until appt as well as health
@@ -296,20 +302,31 @@ class FrontDesk:
 
             else:
                 self.sick_to_healthy_pool(patient=patient)
+        #print "Sick-Healthy"
+        #print len(self.sick), len(self.healthy)
 
-    def release_slots(self):
+    def release_slots_by_increments(self):
         for day in [1, 3, 7, 14, 28]:
 
             if self.curr_day + day < len(self.days):
 
                 release_day = self.days[self.curr_day + day]
+                fc_index = release_day.get_first_closed_slot()
 
-                first_closed = release_day.get_first_closed_slot()
-                fc_index = release_day.schedule.index(first_closed)
-                for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * 32) - 1):
-                    if release_day.day_num < len(self.days) - 1:
-                        # self._log.debug("Opening slot : Day {} {}".format(release_day.day_num, release_day.schedule[i]))
+                for i in range(fc_index, int(fc_index + (self.release_schedule[day]) * self.conf['slots_per_day']) - 1):
+                    if day.schedule[i].open is False and day.schedule[i].appt is None:
                         release_day.schedule[i].open = True
+
+    def release_slots_by_day(self):
+        for day in self.days[self.curr_day:self.curr_day+8]:    # TODO: figure out horizon
+            if day.day_num < len(self.days) - 1:
+                fc_index = day.get_first_closed_slot()
+
+                for i in range(fc_index, int(fc_index + 0.1 * self.conf['slots_per_day'])):
+                        if i < len(day.schedule):
+                            if day.schedule[i].open is False and day.schedule[i].appt is None:
+                                self._log.debug("Releasing Day {} {}".format(day.day_num, day.schedule[i]))
+                                day.schedule[i].open = True
 
     '''Scheduling Policies'''
 

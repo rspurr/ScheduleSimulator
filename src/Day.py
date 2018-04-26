@@ -9,20 +9,21 @@ class Day(object):
 
     """
 
-    def __init__(self, num, cycle_num):
+    def __init__(self, num, cycle_num, num_slots, init_release=0.2):
 
         self.day_num = num
         self.day_in_cycle = cycle_num
         self.schedule = []
-        self.percent_avail = 0.2
+        self.percent_avail = init_release
+        self.slot_amt = num_slots
         # have a slot for every 15 minutes in the day
         # schedule N% of appts as open for the given day
-        for i in range(0, int(8*self.percent_avail*4)):
-            self.schedule.append(Timeslot(i, open=True))
 
-        # initialize rest of timeslots but block them from being available for scheduling
-        for i in range(int(8*self.percent_avail*4), 8*4):
-            self.schedule.append(Timeslot(i, open=False))
+        for i in range(0, self.slot_amt):
+            self.schedule.append(Timeslot(i))
+
+        for i in range(0, int(self.slot_amt * self.percent_avail)):
+            self.schedule[i].open = True
 
     def get_appt(self, time):
         return self.schedule[time].appt
@@ -52,7 +53,7 @@ class Day(object):
     def get_first_closed_slot(self):
         for slot in self.schedule:
             if slot.open is False and slot.appt is None:
-                return slot
+                return self.schedule.index(slot)
         return -1
 
 
@@ -60,7 +61,7 @@ class Timeslot(object):
     """
     Timeslot object #TODO doc this
     """
-    def __init__(self, time, open):
+    def __init__(self, time, open=False):
         self.time = time
         self.appt = None
         self.open = open
